@@ -19,8 +19,8 @@
     - [ ] Auth
         - [x] LoginController
             -[x] login action
-        - [ ] RegisterController
-            -[ ] register action
+        - [x] RegisterController
+            -[x] register action
     - [ ] admin
         - [ ] UserController
         - [ ] ArticleController
