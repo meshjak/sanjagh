@@ -5,7 +5,7 @@
 - [x] change the default login route
 - [x] edit route login in navbar
 - [x] change the default register route
-- [ ] edit route register in navbar
+- [x] edit route register in navbar
 - [ ] migration
     - [x] user
     - [ ] article
