@@ -2,6 +2,7 @@
 
 - [x] enable pretty url
 - [x] setting database connection
+- [ ] change the default login route
 - [ ] migration
     - [x] user
     - [ ] article
@@ -9,18 +10,23 @@
     - [x] user
     - [ ] article
 - [ ] model form
-    - [ ] login
+    - [x] login (default)
     - [ ] register
     - [ ] user
     - [ ] article
 - [ ] controller
-    - [ ] Auth/AuthController
-        -[ ] login action
-        -[ ] register action
+    - [ ] Auth
+        - [x] LoginController
+            -[x] login action
+        - [ ] RegisterController
+            -[ ] register action
     - [ ] admin
         - [ ] UserController
         - [ ] ArticleController
 - [ ] view
+    - [ ] auth
+        - [ ] login 
+        - [ ] register 
     - [ ] admin
         - [ ] user
             - [ ] all
