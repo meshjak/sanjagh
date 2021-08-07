@@ -3,6 +3,7 @@
 - [x] enable pretty url
 - [x] setting database connection
 - [x] change the default login route
+- [x] edit route login in navbar
 - [ ] migration
     - [x] user
     - [ ] article
