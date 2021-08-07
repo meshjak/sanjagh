@@ -12,7 +12,7 @@
     - [ ] article
 - [ ] model form
     - [x] login (default)
-    - [ ] register
+    - [x] register
     - [ ] user
     - [ ] article
 - [ ] controller
