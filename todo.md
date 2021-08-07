@@ -4,6 +4,8 @@
 - [x] setting database connection
 - [x] change the default login route
 - [x] edit route login in navbar
+- [x] change the default register route
+- [ ] edit route register in navbar
 - [ ] migration
     - [x] user
     - [ ] article
