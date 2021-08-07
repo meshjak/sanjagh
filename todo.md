@@ -6,7 +6,7 @@
     - [x] user
     - [ ] article
 - [ ] model
-    - [ ] user
+    - [x] user
     - [ ] article
 - [ ] model form
     - [ ] login
