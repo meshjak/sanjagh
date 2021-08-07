@@ -1,7 +1,7 @@
 ### version 1
 
-- [ ] enable pretty url
-- [ ] setting database connection
+- [x] enable pretty url
+- [x] setting database connection
 - [ ] migration
     - [ ] user
     - [ ] article
