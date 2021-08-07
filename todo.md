@@ -3,7 +3,7 @@
 - [x] enable pretty url
 - [x] setting database connection
 - [ ] migration
-    - [ ] user
+    - [x] user
     - [ ] article
 - [ ] model
     - [ ] user
