@@ -25,9 +25,9 @@
         - [ ] UserController
         - [ ] ArticleController
 - [ ] view
-    - [ ] auth
+    - [x] auth
         - [x] login 
-        - [ ] register 
+        - [x] register 
     - [ ] admin
         - [ ] user
             - [ ] all
