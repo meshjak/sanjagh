@@ -2,7 +2,7 @@
 
 - [x] enable pretty url
 - [x] setting database connection
-- [ ] change the default login route
+- [x] change the default login route
 - [ ] migration
     - [x] user
     - [ ] article
