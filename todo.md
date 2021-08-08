@@ -36,7 +36,7 @@
         - [x] login 
         - [x] register 
     - [ ] master (before name was admin)
-        - [ ] layouts
+        - [x] layouts
         - [ ] route page
         - [ ] user
             - [ ] all
