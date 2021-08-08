@@ -6,6 +6,8 @@
 - [x] edit route login in navbar
 - [x] change the default register route
 - [x] edit route register in navbar
+- [x] add master view dependency in web dir
+- [ ] add MasterAsset for management master view dependency
 - [ ] migration
     - [x] user
     - [ ] article
@@ -24,13 +26,15 @@
         - [x] RegisterController
             -[x] register action
     - [ ] admin
+        - [x] AdminController
         - [ ] UserController
         - [ ] ArticleController
 - [ ] view
     - [x] auth
         - [x] login 
         - [x] register 
-    - [ ] admin
+    - [ ] master (before name was admin)
+        - [ ] route page
         - [ ] user
             - [ ] all
             - [ ] create
