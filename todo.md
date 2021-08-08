@@ -7,7 +7,7 @@
 - [x] change the default register route
 - [x] edit route register in navbar
 - [x] add master view dependency in web dir
-- [ ] add MasterAsset for management master view dependency
+- [x] change default master route
 - [ ] migration
     - [x] user
     - [ ] article
@@ -36,6 +36,7 @@
         - [x] login 
         - [x] register 
     - [ ] master (before name was admin)
+        - [ ] layouts
         - [ ] route page
         - [ ] user
             - [ ] all
