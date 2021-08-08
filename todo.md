@@ -29,6 +29,8 @@
         - [x] AdminController
         - [ ] UserController
         - [ ] ArticleController
+- [ ] assets
+    - [x] MasterAsset 
 - [ ] view
     - [x] auth
         - [x] login 
