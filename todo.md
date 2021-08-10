@@ -20,6 +20,9 @@
     - [x] register
     - [ ] user
     - [ ] article
+- [ ] model search
+    - [x] user
+  
 - [ ] controller
     - [ ] Auth
         - [x] LoginController
@@ -28,7 +31,7 @@
             -[x] register action
     - [ ] admin
         - [x] AdminController
-        - [ ] UserController
+        - [x] UserController
         - [ ] ArticleController
 - [ ] assets
     - [x] MasterAsset 
@@ -40,8 +43,11 @@
         - [x] layouts
         - [ ] route page
         - [ ] user
-            - [ ] all
+            - [x] index
             - [ ] create
+            - [ ] update
+            - [x] _search
+            - [ ] _form
         - [ ] article
             - [ ] all
     
