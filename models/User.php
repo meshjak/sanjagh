@@ -77,16 +77,17 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels(): array
     {
         return [
-            'id' => 'ID',
-            'fullname' => 'Fullname',
-            'username' => 'Username',
-            'email' => 'Email',
-            'isAdmin' => 'Is Admin',
-            'status' => 'Status',
-            'password' => 'Password',
+            'id' => 'شناسه',
+            'fullname' => 'نام و نام خانوادگی',
+            'username' => 'نام کاربری',
+            'email' => 'ایمیل',
+            'isAdmin' => 'مدیریت',
+            'status' => 'وضعیت',
+            'password' => 'رمزعبور',
             'authKey' => 'Auth Key',
             'accessToken' => 'Access Token',
-            'created_at' => 'Created At',
+            'password_repeat' => 'تکرار رمزعبور',
+            'created_at' => 'تاریخ ایجاد کاربر',
         ];
     }
 
