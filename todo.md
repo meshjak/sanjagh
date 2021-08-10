@@ -8,6 +8,7 @@
 - [x] edit route register in navbar
 - [x] add master view dependency in web dir
 - [x] change default master route
+- [ ] unique email field in user table (edit user table)
 - [ ] migration
     - [x] user
     - [ ] article
