@@ -48,6 +48,7 @@
             - [x] update
             - [x] _search
             - [x] _form
+            - [x] view
         - [ ] article
             - [ ] all
     
