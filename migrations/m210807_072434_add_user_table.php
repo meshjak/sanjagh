@@ -16,7 +16,7 @@ class m210807_072434_add_user_table extends Migration
             'id' => $this->primaryKey(),
             'fullname' => $this->string(50)->notNull(),
             'username' => $this->string(50)->unique()->notNull(),
-            'email' => $this->string(100)->notNull(),
+            'email' => $this->string(100)->unique()->notNull(),
             'isAdmin' => $this->boolean()->defaultValue(0)->notNull(), // 0 admin - 1 user
             'status' => $this->boolean()->defaultValue(1)->notNull(), // 0 inactive - 1 active
             'password' => $this->string(100)->notNull(),
