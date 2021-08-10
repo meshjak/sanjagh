@@ -18,7 +18,7 @@
 - [ ] model form
     - [x] login (default)
     - [x] register
-    - [ ] user
+    - [x] user
     - [ ] article
 - [ ] model search
     - [x] user
@@ -44,10 +44,10 @@
         - [ ] route page
         - [ ] user
             - [x] index
-            - [ ] create
-            - [ ] update
+            - [x] create
+            - [x] update
             - [x] _search
-            - [ ] _form
+            - [x] _form
         - [ ] article
             - [ ] all
     

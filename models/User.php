@@ -3,7 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 use yii\web\IdentityInterface;
 
 /**
@@ -22,12 +24,28 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    const SCENARIO_CREATE = 'create';
+    public $password_repeat;
+
     /**
      * {@inheritdoc}
      */
     public static function tableName(): string
     {
         return 'user';
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'updatedAtAttribute' => false,
+                'createdAtAttribute' => 'created_at',
+                'value' => function($event) {return $event->sender->created_at ?? new Expression('NOW()');}
+
+            ],
+        ];
     }
 
     /**
@@ -44,6 +62,13 @@ class User extends ActiveRecord implements IdentityInterface
             [['authKey', 'accessToken'], 'string', 'max' => 255],
             [['username'], 'unique'],
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['username','fullname', 'email', 'status', 'isAdmin', 'password', 'password_repeat'];//Scenario Values Only Accepted
+        return $scenarios;
     }
 
     /**
@@ -135,7 +160,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * get status
      */
-    public function getStatus(): int
+    public function getStatus()
     {
         return $this->status;
     }
@@ -165,5 +190,21 @@ class User extends ActiveRecord implements IdentityInterface
     public function validatePassword(string $password): bool
     {
         return Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+    /**
+     * @throws \yii\base\Exception
+     */
+    public function beforeSave($insert): bool
+    {
+        if(isset($this->password))
+            $this->password = Yii::$app->security->generatePasswordHash($this->password);
+        $this->accessToken = Yii::$app->security->generateRandomString();
+        $this->authKey = Yii::$app->security->generateRandomString();
+        return parent::beforeSave($insert);
+    }
+
+    public function isCreate() : bool {
+        return $this->scenario === self::SCENARIO_CREATE;
     }
 }
