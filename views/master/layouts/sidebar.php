@@ -1,3 +1,8 @@
+<?php
+
+use yii\helpers\Url;
+
+?>
 <!-- BEGIN: Main Menu-->
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
@@ -12,6 +17,14 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
             <li class=" navigation-header"><span>برنامه ها</span>
+            </li>
+            <li class=" nav-item"><a href="#"><i class="bx bxs-group" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">مدیریت کاربران</span></a>
+                <ul class="menu-content">
+                    <li><a href="<?= Url::toRoute('master/user/index', true); ?>"><i class="bx bx-left-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">لیست کاربران</span></a>
+                    </li>
+                    <li><a href="<?= Url::toRoute('master/user/create', true); ?>"><i class="bx bx-left-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">ایجاد کاربر جدید</span></a>
+                    </li>
+                </ul>
             </li>
             <li class=" nav-item"><a href=""><i class="menu-livicon" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">ایمیل</span></a>
             </li>

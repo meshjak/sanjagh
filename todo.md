@@ -9,6 +9,7 @@
 - [x] add master view dependency in web dir
 - [x] change default master route
 - [ ] unique email field in user table (edit user table)
+- [x] add user menu to sidebar
 - [ ] migration
     - [x] user
     - [ ] article
