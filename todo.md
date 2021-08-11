@@ -13,7 +13,7 @@
 - [x] change label form user
 - [ ] migration
     - [x] user
-    - [ ] article
+    - [x] article
 - [ ] model
     - [x] user
     - [ ] article
@@ -86,7 +86,9 @@
 | id         | id           | int auto_increment | `false`    |           |                      |
 | author_id  | author_id    | int                | `false`    |           |users foreign key     |
 | title      | title        | varchar(70)        | `false`    |           |                      |
-| slug       | slug         | varchar(120)       | `false`    |           |                      |
 | body       | body         | text               | `false`    |           |                      |
 | status     | status       | boolean            | `false`    |     1     |0 inactive - 1  active|
 | created_at | created_at   | timestamp          | `false`    |           |article creation time |
+
+add in version 2
+| slug       | slug         | varchar(120)       | `false`    |           |                      |
