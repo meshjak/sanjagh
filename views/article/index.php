@@ -1,11 +1,13 @@
 <?php
 
+use yii\bootstrap4\LinkPager;
 use yii\helpers\Html;
 use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $pages yii\data\Pagination */
 
 $this->title = 'مقالات';
 $this->params['breadcrumbs'][] = $this->title;
@@ -27,6 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'itemOptions' => ['class' => 'item'],
         'itemView' => '_article_item'
     ]) ?>
+
+    <?= LinkPager::widget([
+    'pagination' => $pages,
+    ]);
+    ?>
 
 
 </div>
