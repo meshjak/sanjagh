@@ -82,3 +82,11 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.is-invalid {
+    color: #FF5B5C;
+    font-size: .75rem;
+    margin-top: 4px;
+    font-weight: 700;
+    line-height: 1.2;
+}
