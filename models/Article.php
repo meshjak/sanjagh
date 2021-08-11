@@ -5,6 +5,8 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\helpers\Html;
+use yii\helpers\StringHelper;
 
 /**
  * This is the model class for table "article".
@@ -66,5 +68,25 @@ class Article extends ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(User::className(), ['id' => 'author_id']);
+    }
+
+    public function description(): string
+    {
+        return StringHelper::truncateWords(Html::encode($this->body), 60);
+    }
+
+    /**
+     * get article "create at"
+     *
+     * @return string
+     */
+    public function getCreatedAt(): ?string
+    {
+        return $this->created_at;
+    }
+
+    public function relativeCreateTime(): string
+    {
+        return Yii::$app->formatter->asRelativeTime($this->getCreatedAt());
     }
 }
