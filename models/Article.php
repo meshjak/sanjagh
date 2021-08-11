@@ -72,12 +72,12 @@ class Article extends ActiveRecord
     public function attributeLabels(): array
     {
         return [
-            'id' => 'ID',
-            'author_id' => 'Author ID',
-            'title' => 'Title',
-            'body' => 'Body',
-            'status' => 'Status',
-            'created_at' => 'Created At',
+            'id' => 'شناسه',
+            'author_id' => 'نویسنده',
+            'title' => 'عنوان',
+            'body' => 'مطلب',
+            'status' => 'وضعیت',
+            'created_at' => 'زمان ایجاد',
         ];
     }
 
