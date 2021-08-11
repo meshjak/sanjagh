@@ -11,6 +11,7 @@
 - [x] unique email field in user table (edit user table)
 - [x] add user menu to sidebar
 - [x] change label form user
+- [x] partitioning main layouts
 - [ ] migration
     - [x] user
     - [x] article
