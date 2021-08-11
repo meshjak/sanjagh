@@ -17,12 +17,12 @@
     - [x] article
 - [ ] model
     - [x] user
-    - [ ] article
+    - [x] article
 - [ ] model form
     - [x] login (default)
     - [x] register
     - [x] user
-    - [ ] article
+    - [x] article
 - [ ] model search
     - [x] user
   
@@ -36,6 +36,8 @@
         - [x] AdminController
         - [x] UserController
         - [ ] ArticleController
+    - [ ] home
+        - [x] ArticleController
 - [ ] assets
     - [x] MasterAsset 
 - [ ] view
@@ -57,7 +59,7 @@
     - [ ] home
         - [ ] article
             - [x] index
-            - [ ] view
+            - [x] view
             - [ ] create
             - [ ] update
         - [ ] profile (user)

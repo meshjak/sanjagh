@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\Html;
@@ -38,6 +39,14 @@ class Article extends ActiveRecord
                 'class' => BlameableBehavior::class,
                 'createdByAttribute' => 'author_id',
                 'updatedByAttribute' => 'author_id',
+            ],
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
+//                    ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
+                ],
+                'value' => function() {return date('Y-m-d H:i:s');}
             ],
         ];
     }
