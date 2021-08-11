@@ -46,8 +46,8 @@
         - [x] register 
     - [ ] master (before name was admin)
         - [x] layouts
-        - [ ] route page
-        - [ ] user
+        - [x] route page
+        - [x] user
             - [x] index
             - [x] create
             - [x] update
@@ -60,8 +60,8 @@
         - [ ] article
             - [x] index
             - [x] view
-            - [ ] create
-            - [ ] update
+            - [x] create
+            - [x] update
         - [ ] profile (user)
             - [ ] index
     
