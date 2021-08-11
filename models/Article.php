@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\Html;
@@ -30,13 +31,24 @@ class Article extends ActiveRecord
         return 'article';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'author_id',
+                'updatedByAttribute' => 'author_id',
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['author_id', 'title', 'body'], 'required'],
+            [['title', 'body'], 'required'],
             [['author_id', 'status'], 'integer'],
             [['body'], 'string'],
             [['created_at'], 'safe'],
