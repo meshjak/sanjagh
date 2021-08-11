@@ -54,6 +54,14 @@
             - [x] view
         - [ ] article
             - [ ] all
+    - [ ] home
+        - [ ] article
+            - [x] index
+            - [ ] view
+            - [ ] create
+            - [ ] update
+        - [ ] profile (user)
+            - [ ] index
     
 ---
 # Table: user

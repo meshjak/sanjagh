@@ -7,16 +7,16 @@ use yii\widgets\ListView;
 /* @var $searchModel app\models\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articles';
+$this->title = 'مقالات';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-index">
-    <div class="d-flex justify-content-between">
-        <h1><?= Html::encode($this->title) ?></h1>
+    <div class="d-flex justify-content-between align-items-center border-bottom mb-3 pb-1">
+        <h3><?= Html::encode($this->title) ?></h3>
 
-        <p>
-            <?= Html::a('Create Article', ['create'], ['class' => 'btn btn-success']) ?>
-        </p>
+        <div>
+            <?= Html::a('ایجاد مقاله جدید', ['create'], ['class' => 'btn btn-sm btn-success']) ?>
+        </div>
     </div>
 
 
@@ -25,9 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
-        'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->title), ['view', 'id' => $model->id]);
-        },
+        'itemView' => '_article_item'
     ]) ?>
 
 
