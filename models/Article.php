@@ -65,6 +65,6 @@ class Article extends ActiveRecord
      */
     public function getAuthor()
     {
-        return $this->hasMany(User::className(), ['id' => 'author_id']);
+        return $this->hasOne(User::className(), ['id' => 'author_id']);
     }
 }
