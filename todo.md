@@ -35,7 +35,7 @@
     - [ ] admin
         - [x] AdminController
         - [x] UserController
-        - [ ] ArticleController
+        - [x] ArticleController
     - [ ] home
         - [x] ArticleController
 - [ ] assets
@@ -55,15 +55,13 @@
             - [x] _form
             - [x] view
         - [ ] article
-            - [ ] all
+            - [x] index
     - [ ] home
         - [ ] article
             - [x] index
             - [x] view
             - [x] create
             - [x] update
-        - [ ] profile (user)
-            - [ ] index
     
 ---
 # Table: user
