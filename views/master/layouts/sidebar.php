@@ -26,7 +26,7 @@ use yii\helpers\Url;
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href=""><i class="menu-livicon" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">ایمیل</span></a>
+            <li class=" nav-item"><a href="<?= Url::toRoute('master/article/index', true); ?>"><i class="bx bxs-notepad" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">مدیریت مقالات</span></a>
             </li>
             <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">صورتحساب</span></a>
                 <ul class="menu-content">
