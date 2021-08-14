@@ -137,7 +137,7 @@ class ArticleController extends Controller
             $model->status = $model->status ? 0 : 1;
             $model->save();
         }
-        return $this->redirect(['index']);
+        return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
     }
 
     /**
