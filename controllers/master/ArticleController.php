@@ -4,7 +4,10 @@ namespace app\controllers\master;
 
 use app\models\Article;
 use app\models\ArticleSearch;
+use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -23,6 +26,22 @@ class ArticleController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'denyCallback' => function ($rule, $action) {
+                        throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+                    },
+                    'only' => ['*'],
+                    'rules' => [
+                        [
+                            'roles' => ['@'], // user
+                            'allow' => true, // access to
+                            'matchCallback' => function ($rule, $action) {
+                                return Yii::$app->user->identity->isAdmin == 1;
+                            }
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

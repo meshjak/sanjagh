@@ -4,7 +4,10 @@ namespace app\controllers\master;
 
 use app\models\User;
 use app\models\UserSearch;
+use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -14,14 +17,32 @@ use yii\filters\VerbFilter;
 class UserController extends Controller
 {
     public $layout = '@app/views/master/layouts/base';
+
     /**
      * @inheritDoc
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'denyCallback' => function ($rule, $action) {
+                        throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+
+                    },
+                    'only' => ['*'],
+                    'rules' => [
+                        [
+                            'roles' => ['@'], // user
+                            'allow' => true, // access to
+                            'matchCallback' => function ($rule, $action) {
+                                return Yii::$app->user->identity->isAdmin == 1;
+                            }
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
