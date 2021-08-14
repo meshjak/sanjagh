@@ -4,8 +4,10 @@ namespace app\controllers;
 
 use app\models\Article;
 use app\models\ArticleSearch;
+use Yii;
 use yii\data\Pagination;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -92,10 +94,13 @@ class ArticleController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws ForbiddenHttpException
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if(!$this->checkOwnArticle($model))
+            throw new ForbiddenHttpException('You are not allowed to update this article.');
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -112,10 +117,15 @@ class ArticleController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws ForbiddenHttpException
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if(!$this->checkOwnArticle($model))
+            throw new ForbiddenHttpException('You are not allowed to update this article.');
+
+        $model->delete();
 
         return $this->redirect(['index']);
     }
@@ -134,5 +144,9 @@ class ArticleController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function checkOwnArticle($model){
+        return $model->author_id === Yii::$app->user->id;
     }
 }
