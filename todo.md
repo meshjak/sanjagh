@@ -12,10 +12,10 @@
 - [x] add user menu to sidebar
 - [x] change label form user
 - [x] partitioning main layouts
-- [ ] migration
 - [x] create permission and role
 - [x] just author can update or delete own article
-- [ ] admin access to change status in view article page
+- [ ] set rbac in master
+- [ ] migration
     - [x] user
     - [x] article
 - [ ] model

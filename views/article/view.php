@@ -18,6 +18,11 @@ YiiAsset::register($this);
             <h3><?= Html::encode($this->title) ?></h3>
             <div>
                 <?= Html::a('بروزرسانی', ['update', 'id' => $model->id], ['class' => 'btn btn-sm btn-primary']) ?>
+                <?= Html::a($model->status ? 'فعال' : 'غیرفعال', ['master/article/status', 'id' => $model->id], ['class' => 'btn btn-sm btn-warning', 'data' => [
+                    'method' => 'post',
+                    'title' => 'وضعیت',
+                    'pjax' => 0
+                ],]) ?>
                 <?= Html::a('حذف', ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-sm btn-danger',
                     'data' => [
@@ -25,6 +30,7 @@ YiiAsset::register($this);
                         'method' => 'post',
                     ],
                 ]) ?>
+
             </div>
         </div>
         <div class="card-body">
