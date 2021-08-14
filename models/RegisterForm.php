@@ -32,7 +32,7 @@ class RegisterForm extends Model {
         $user->fullname = $this->fullname;
         $user->username = $this->username;
         $user->email = $this->email;
-        $user->password = Yii::$app->security->generatePasswordHash($this->password);
+        $user->password = $this->password;
         $user->accessToken = Yii::$app->security->generateRandomString();
         $user->authKey = Yii::$app->security->generateRandomString();
 
