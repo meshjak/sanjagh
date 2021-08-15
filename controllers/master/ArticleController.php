@@ -34,12 +34,26 @@ class ArticleController extends Controller
                     'only' => ['*'],
                     'rules' => [
                         [
-                            'roles' => ['@'], // user
-                            'allow' => true, // access to
-                            'matchCallback' => function ($rule, $action) {
-                                return Yii::$app->user->identity->isAdmin == 1;
-                            }
+                            'allow' => true,
+                            'actions' => ['index'],
+                            'roles' => ['listArticle'],
                         ],
+                        [
+                            'allow' => true,
+                            'actions' => ['status'],
+                            'roles' => ['statusArticle'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['view'],
+                            'roles' => ['viewDetailsArticle'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['delete'],
+                            'roles' => ['deleteArticle'],
+                        ],
+
                     ],
                 ],
                 'verbs' => [
@@ -77,48 +91,6 @@ class ArticleController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Article model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Article();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Article model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id شناسه
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
         ]);
     }
 

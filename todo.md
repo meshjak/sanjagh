@@ -30,7 +30,7 @@
     - [x] user
 - [ ] rbac
     - [x] user
-    - [ ] article
+    - [x] article
 - [ ] controller
     - [ ] Auth
         - [x] LoginController
