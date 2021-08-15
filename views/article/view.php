@@ -9,6 +9,8 @@ use yii\web\YiiAsset;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'مقالات', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$userAccessDeleteArticle =
+    $model->author_id === Yii::$app->user->id || Yii::$app->user->can('deleteArticle');
 YiiAsset::register($this);
 ?>
 <div class="article-view">
@@ -23,13 +25,14 @@ YiiAsset::register($this);
                     'title' => 'وضعیت',
                     'pjax' => 0
                 ],]) ?>
-                <?= Html::a('حذف', ['delete', 'id' => $model->id], [
+                <?= $userAccessDeleteArticle ? Html::a('حذف', ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-sm btn-danger',
                     'data' => [
+                        'visible' => false,
                         'confirm' => 'Are you sure you want to delete this item?',
                         'method' => 'post',
                     ],
-                ]) ?>
+                ]) : '' ?>
 
             </div>
         </div>

@@ -6,6 +6,7 @@ use app\models\Article;
 use app\models\ArticleSearch;
 use Yii;
 use yii\data\Pagination;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -21,17 +22,25 @@ class ArticleController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create', 'update'],
+                'rules' => [
+                    [
+                        'actions' => ['create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                 ],
-            ]
-        );
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
     }
 
     /**
@@ -122,7 +131,8 @@ class ArticleController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        if(!$this->checkOwnArticle($model))
+
+        if( !$this->checkOwnArticle($model) && !Yii::$app->user->can('deleteArticle'))
             throw new ForbiddenHttpException('You are not allowed to update this article.');
 
         $model->delete();
