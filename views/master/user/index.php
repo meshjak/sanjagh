@@ -11,6 +11,12 @@ use yii\helpers\Url;
 $this->title = 'Users';
 
 $master = Url::toRoute('master/master/index', true);
+// '{view} {update} {delete}'
+$columnActionTemplate = '';
+$columnActionTemplate .= Yii::$app->user->can('deleteUser') ? '{delete}' : '';
+$columnActionTemplate .= Yii::$app->user->can('updateUser') ? '{update}' : '';
+$columnActionTemplate .= Yii::$app->user->can('viewDetailsArticle') ? '{view}' : '';
+
 ?>
 
 <!-- user index -->
@@ -60,6 +66,21 @@ $master = Url::toRoute('master/master/index', true);
                                         'value' => function ($data) {
                                             return $data->status ? 'فعال' : 'غیرفعال';
                                         },
+                                        'content' => function ($data) {
+                                            $statusReverse = !$data->status ? 'فعال' : 'غیرفعال';
+                                            $userStatus = $data->status ? 'فعال' : 'غیرفعال';
+                                            return (Yii::$app->user->can('statusUser')) ? Html::a(
+                                                $userStatus,
+                                                ['master/user/status', 'id' => $data->id],
+                                                [
+                                                    'title' => 'حذف',
+                                                    'data-pjax' => '0',
+                                                    'data-method' => 'post',
+                                                    'aria-label'=> "Status",
+                                                    'data-confirm' => 'وضعیت آیتم مورد نظر به '. $statusReverse .' تغییر دهید؟'
+                                                ]
+                                            ) : $userStatus;
+                                        },
                                     ],
                                     [
                                         'class' => 'yii\grid\DataColumn', // can be omitted, as it is the default
@@ -71,7 +92,8 @@ $master = Url::toRoute('master/master/index', true);
                                     // 'created_at',
                                     [
                                         'class' => 'yii\grid\ActionColumn',
-                                        'template' => '{download} {view} {update} {delete}',
+                                        'template' => $columnActionTemplate,
+                                        'visible' => !empty($columnActionTemplate),
                                         'buttons' => [
                                             'update' => function ($url) {
                                                 return Html::a(
