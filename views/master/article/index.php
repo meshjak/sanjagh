@@ -11,10 +11,15 @@ use yii\helpers\Url;
 /* @var $searchModel app\models\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+$action = '{view}';
+$action .= Yii::$app->user->can('deleteArticle') ? '{delete}' : '';
+
+
 $this->title = 'مقالات';
 $this->params['breadcrumbs'][] = $this->title;
 
 $masterUrl = Url::toRoute('master/master/index', true);
+
 ?>
 
 <!-- article index -->
@@ -43,7 +48,7 @@ $masterUrl = Url::toRoute('master/master/index', true);
                     <div class="card-content">
                         <div class="card-body card-dashboard">
 
-                            <?= GridView::widget([
+                            <?= $table = GridView::widget([
                                 'dataProvider' => $dataProvider,
                                 'options' => [
                                     'class' => 'table-responsive',
@@ -72,8 +77,9 @@ $masterUrl = Url::toRoute('master/master/index', true);
                                         'label' => Article::attributeLabels()['status'],
                                         'content' => function ($data) {
                                             $statusReverse = !$data->status ? 'فعال' : 'غیرفعال';
-                                            return Html::a(
-                                                $data->status ? 'فعال' : 'غیرفعال',
+                                            $articleStatus = $data->status ? 'فعال' : 'غیرفعال';
+                                            return (Yii::$app->user->can('statusUser')) ? Html::a(
+                                                $articleStatus,
                                                 ['master/article/status', 'id' => $data->id],
                                                 [
                                                     'title' => 'حذف',
@@ -82,12 +88,12 @@ $masterUrl = Url::toRoute('master/master/index', true);
                                                     'aria-label'=> "Status",
                                                     'data-confirm' => 'وضعیت آیتم مورد نظر به '. $statusReverse .' تغییر دهید؟'
                                                 ]
-                                            );
+                                            ): $articleStatus;
                                         },
                                     ],
                                     [
                                         'class' => 'yii\grid\ActionColumn',
-                                        'template' => '{download} {view} {delete}',
+                                        'template' => $action,
                                         'buttons' => [
                                             'delete' => function ($url) {
                                                 return Html::a(

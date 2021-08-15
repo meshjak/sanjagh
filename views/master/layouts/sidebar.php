@@ -35,8 +35,10 @@ use yii\helpers\Url;
                 </li>
             <?php endif ?>
 
-            <li class=" nav-item"><a href="<?= Url::toRoute('master/article/index', true); ?>"><i class="bx bxs-notepad" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">مدیریت مقالات</span></a>
-            </li>
+            <?php if (Yii::$app->user->can('listArticle')): ?>
+                <li class=" nav-item"><a href="<?= Url::toRoute('master/article/index', true); ?>"><i class="bx bxs-notepad" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">مدیریت مقالات</span></a>
+                </li>
+            <?php endif ?>
             <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">صورتحساب</span></a>
                 <ul class="menu-content">
                     <li><a href=""><i class="bx bx-left-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">لیست صورتحساب ها</span></a>
