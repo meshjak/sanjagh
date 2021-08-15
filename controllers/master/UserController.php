@@ -30,16 +30,38 @@ class UserController extends Controller
                     'class' => AccessControl::className(),
                     'denyCallback' => function ($rule, $action) {
                         throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
-
                     },
                     'only' => ['*'],
                     'rules' => [
                         [
-                            'roles' => ['@'], // user
-                            'allow' => true, // access to
-                            'matchCallback' => function ($rule, $action) {
-                                return Yii::$app->user->identity->isAdmin == 1;
-                            }
+                            'allow' => true,
+                            'actions' => ['index'],
+                            'roles' => ['listUser'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['view'],
+                            'roles' => ['viewDetailsUser'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['create'],
+                            'roles' => ['createUser'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['update'],
+                            'roles' => ['updateUser'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['delete'],
+                            'roles' => ['deleteUser'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['status'],
+                            'roles' => ['statusUser'],
                         ],
                     ],
                 ],

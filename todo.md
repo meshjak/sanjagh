@@ -28,7 +28,9 @@
     - [x] article
 - [ ] model search
     - [x] user
-  
+- [ ] rbac
+    - [x] user
+    - [ ] article
 - [ ] controller
     - [ ] Auth
         - [x] LoginController
