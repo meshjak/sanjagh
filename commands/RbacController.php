@@ -11,45 +11,55 @@ class RbacController extends Controller
         $auth = Yii::$app->authManager;
         $auth->removeAll();
 
-        // add "listUser" permission
+        // 1- add "listUser" permission
         $listUser = $auth->createPermission('listUser');
         $listUser->description = 'show list of users';
         $auth->add($listUser);
 
-        // add "createUser" permission
+        // 2- add "createUser" permission
         $createUser = $auth->createPermission('createUser');
         $createUser->description = 'Create a user';
         $auth->add($createUser);
 
-        // add "updateUser" permission
+        // 3- add "updateUser" permission
         $updateUser = $auth->createPermission('updateUser');
         $updateUser->description = 'Update user';
         $auth->add($updateUser);
 
-        // add "statusUser" permission
+        // 4- add "statusUser" permission
         $statusUser = $auth->createPermission('statusUser');
         $statusUser->description = 'change status user';
         $auth->add($statusUser);
 
-        // add "deleteUser" permission
+        // 5- add "deleteUser" permission
         $deleteUser = $auth->createPermission('deleteUser');
         $deleteUser->description = 'delete user';
         $auth->add($deleteUser);
 
-        // add "viewDetailsUser" permission
+        // 6- add "viewDetailsUser" permission
         $viewDetailsUser = $auth->createPermission('viewDetailsUser');
         $viewDetailsUser->description = 'show details user';
         $auth->add($viewDetailsUser);
 
-        // add "indexArticle" permission
-        $indexArticle = $auth->createPermission('indexArticle');
-        $indexArticle->description = 'delete user';
-        $auth->add($indexArticle);
+        // 1- add "indexArticle" permission
+        $listArticle = $auth->createPermission('listArticle');
+        $listArticle->description = 'show list of articles';
+        $auth->add($listArticle);
 
-        // add "statusArticle" permission
+        // 2- add "statusArticle" permission
         $statusArticle = $auth->createPermission('statusArticle');
-        $statusArticle->description = 'delete user';
+        $statusArticle->description = 'change status article';
         $auth->add($statusArticle);
+
+        // 3- add "statusArticle" permission
+        $viewDetailsArticle = $auth->createPermission('viewDetailsArticle');
+        $viewDetailsArticle->description = 'delete user';
+        $auth->add($viewDetailsArticle);
+
+        // 4- add "statusArticle" permission
+        $deleteArticle = $auth->createPermission('deleteArticle');
+        $deleteArticle->description = 'delete user';
+        $auth->add($deleteArticle);
 
         // Roles
 
@@ -61,12 +71,15 @@ class RbacController extends Controller
         $auth->addChild($managerUser, $updateUser);
         $auth->addChild($managerUser, $statusUser);
         $auth->addChild($managerUser, $deleteUser);
+        $auth->addChild($managerUser, $viewDetailsUser);
 
         // add managerArticle role
         $managerArticle = $auth->createRole('managerArticle');
         $auth->add($managerArticle);
-        $auth->addChild($managerArticle, $indexArticle);
-        $auth->addChild($managerArticle, $createUser);
+        $auth->addChild($managerArticle, $listArticle);
+        $auth->addChild($managerArticle, $statusArticle);
+        $auth->addChild($managerArticle, $deleteArticle);
+        $auth->addChild($managerArticle, $viewDetailsArticle);
 
         // add superAdmin
         $superAdmin = $auth->createRole('superAdmin');
