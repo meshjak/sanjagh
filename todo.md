@@ -1,6 +1,6 @@
 ### version 2
 - [ ] migration
-    - [ ] comment
+    - [x] comment
 - [ ] model
     - [ ] comment
 - [ ] model form
