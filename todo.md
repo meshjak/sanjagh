@@ -14,42 +14,42 @@
 - [x] partitioning main layouts
 - [x] create permission and role
 - [x] just author can update or delete own article
-- [ ] set rbac in master
-- [ ] migration
+- [x] set rbac in master
+- [x] migration
     - [x] user
     - [x] article
-- [ ] model
+- [x] model
     - [x] user
     - [x] article
-- [ ] model form
+- [x] model form
     - [x] login (default)
     - [x] register
     - [x] user
     - [x] article
-- [ ] model search
+- [x] model search
     - [x] user
-- [ ] rbac
+- [x] rbac
     - [x] user
     - [x] article
-- [ ] controller
-    - [ ] Auth
+- [x] controller
+    - [x] Auth
         - [x] LoginController
             -[x] login action
         - [x] RegisterController
             -[x] register action
-    - [ ] admin
+    - [x] admin
         - [x] AdminController
         - [x] UserController
         - [x] ArticleController
-    - [ ] home
+    - [x] home
         - [x] ArticleController
-- [ ] assets
+- [x] assets
     - [x] MasterAsset 
-- [ ] view
+- [x] view
     - [x] auth
         - [x] login 
         - [x] register 
-    - [ ] master (before name was admin)
+    - [x] master (before name was admin)
         - [x] layouts
         - [x] route page
         - [x] user
@@ -59,10 +59,10 @@
             - [x] _search
             - [x] _form
             - [x] view
-        - [ ] article
+        - [x] article
             - [x] index
-    - [ ] home
-        - [ ] article
+    - [x] home
+        - [x] article
             - [x] index
             - [x] view
             - [x] create
