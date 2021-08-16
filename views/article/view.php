@@ -9,8 +9,9 @@ use yii\web\YiiAsset;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'مقالات', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$currentUserIsAuthorArticle = $model->author_id === Yii::$app->user->id;
 $userAccessDeleteArticle =
-    $model->author_id === Yii::$app->user->id || Yii::$app->user->can('deleteArticle');
+    $currentUserIsAuthorArticle || Yii::$app->user->can('deleteArticle');
 YiiAsset::register($this);
 ?>
 <div class="article-view">
@@ -19,16 +20,20 @@ YiiAsset::register($this);
         <div class="card-header d-flex justify-content-between align-items-center">
             <h3><?= Html::encode($this->title) ?></h3>
             <div>
-                <?= Html::a('بروزرسانی', ['update', 'id' => $model->id], ['class' => 'btn btn-sm btn-primary']) ?>
-                <?= Html::a($model->status ? 'فعال' : 'غیرفعال', ['master/article/status', 'id' => $model->id], ['class' => 'btn btn-sm btn-warning', 'data' => [
-                    'method' => 'post',
-                    'title' => 'وضعیت',
-                    'pjax' => 0
-                ],]) ?>
+                <?= $currentUserIsAuthorArticle ?
+                    Html::a('بروزرسانی', ['update', 'id' => $model->id], ['class' => 'btn btn-sm btn-primary']) : '' ?>
+                <?= Yii::$app->user->can('statusArticle') ? Html::a($model->status ? 'فعال' : 'غیرفعال',
+                        ['master/article/status', 'id' => $model->id],
+                        [
+                            'class' => 'btn btn-sm btn-warning', 'data' => [
+                            'method' => 'post',
+                            'title' => 'وضعیت',
+                            'pjax' => 0
+                        ],
+                    ]) : '' ?>
                 <?= $userAccessDeleteArticle ? Html::a('حذف', ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-sm btn-danger',
                     'data' => [
-                        'visible' => false,
                         'confirm' => 'Are you sure you want to delete this item?',
                         'method' => 'post',
                     ],

@@ -16,9 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="d-flex justify-content-between align-items-center border-bottom mb-3 pb-1">
         <h3><?= Html::encode($this->title) ?></h3>
 
+        <?php if(Yii::$app->user->can('@')):  ?>
         <div>
             <?= Html::a('ایجاد مقاله جدید', ['create'], ['class' => 'btn btn-sm btn-success']) ?>
         </div>
+        <?php endif ?>
     </div>
 
 
