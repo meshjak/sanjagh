@@ -54,7 +54,11 @@ $config = [
             'rules' => [
                 'login' => 'auth/login/login',
                 'register' => 'auth/register/register',
-                'master' => 'master/master/index'
+                'master' => 'master/master/index',
+                '' => 'article',
+                'contact' => 'site/contact',
+                'about' => 'site/about',
+
             ],
         ],
     ],
