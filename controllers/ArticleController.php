@@ -49,16 +49,13 @@ class ArticleController extends Controller
      */
     public function actionIndex()
     {
-        $query = Article::find()->where(['status' => 1]);
-        $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 5]);
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->pagination = ['pageSize' => 4];
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'pages' => $pages,
         ]);
     }
 

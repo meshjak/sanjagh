@@ -13,10 +13,10 @@ $this->title = 'مقالات';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-index">
-    <div class="d-flex justify-content-between align-items-center border-bottom mb-3 pb-1">
+    <div class="d-flex justify-content-between align-items-center mb-3 pb-1">
         <h3><?= Html::encode($this->title) ?></h3>
 
-        <?php if(Yii::$app->user->can('@')):  ?>
+        <?php if(!Yii::$app->user->isGuest):  ?>
         <div>
             <?= Html::a('ایجاد مقاله جدید', ['create'], ['class' => 'btn btn-sm btn-success']) ?>
         </div>
@@ -29,13 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
-        'itemView' => '_article_item'
+        'itemView' => '_article_item',
+        'layout' => "{items}<div class='d-flex justify-content-center'>{pager}</div>"
     ]) ?>
-
-    <?= LinkPager::widget([
-    'pagination' => $pages,
-    ]);
-    ?>
 
 
 </div>
