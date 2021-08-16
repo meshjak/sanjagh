@@ -1,3 +1,40 @@
+### version 2
+- [ ] migration
+    - [ ] comment
+- [ ] model
+    - [ ] comment
+- [ ] model form
+    - [ ] comment
+- [ ] rbac
+    - [ ] comment
+        - [ ] deleteComment
+        - [ ] listComment
+        - [ ] statusComment
+        - [ ] answerComment
+- [ ] view
+    - [ ] master
+        - [ ] comment (list with action)
+    - [ ] home
+        - [ ] article -> view (add comment)
+        
+- [ ] install and config image manager
+
+# Table: comment
+
+- `Name`: comment
+
+## `Columns[]`
+
+| `Label`    | `Name`       | `Type`             | `Nullable` | `Default` | `Comment`            |
+| ---------- | ------------ | ------------------ | ---------- | --------- | -------------------- |
+| id         | id           | int auto_increment | `false`    |           |                      |
+| article_id | article_id   | int                | `false`    |           |article foreign key   |
+| user_id    | user_id      | int                | `false`    |           |users foreign key     |
+| parent_id  | parent_id    | int                | `false`    |     0     |comment foreign key   |
+| body       | body         | text               | `false`    |           |                      |
+| status     | status       | boolean            | `false`    |     0     |0 inactive - 1  active|
+| created_at | created_at   | timestamp          | `false`    |           |user creation time    |
+
 ### version 1
 
 - [x] enable pretty url
