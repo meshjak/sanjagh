@@ -13,6 +13,7 @@ use yii\filters\VerbFilter;
  */
 class CommentController extends Controller
 {
+    public $layout = '@app/views/master/layouts/base';
     /**
      * @inheritDoc
      */
