@@ -4,6 +4,7 @@ namespace app\controllers\master;
 
 use app\models\Comment;
 use app\models\CommentSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -26,6 +27,7 @@ class CommentController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+                        'status' => ['POST'],
                     ],
                 ],
             ]
@@ -80,6 +82,24 @@ class CommentController extends Controller
         return $this->render('create', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Updates an existing Comment model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param int $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionStatus($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost) {
+            $model->status = $model->status ? 0 : 1;
+            $model->save();
+        }
+        return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
     }
 
     /**

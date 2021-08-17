@@ -4,10 +4,10 @@
 - [ ] model
     - [x] comment
 - [ ] model form
-    - [ ] comment
+    - [x] comment
 - [ ] controller
     - [ ] master -> comment
-        - [ ] status action
+        - [x] status action
     - [ ] home -> comment
 - [ ] rbac
     - [ ] comment
