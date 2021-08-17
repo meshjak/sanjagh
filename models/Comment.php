@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -54,13 +53,13 @@ class Comment extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => 'User ID',
-            'article_id' => 'Article ID',
-            'parent_id' => 'Parent ID',
-            'body' => 'Body',
-            'status' => 'Status',
-            'created_at' => 'Created At',
+            'id' => 'شناسه',
+            'user_id' => 'فرستنده',
+            'article_id' => 'مقاله',
+            'parent_id' => 'نظر پدر',
+            'body' => 'متن',
+            'status' => 'وضعیت',
+            'created_at' => 'زمان ایجاد',
         ];
     }
 
