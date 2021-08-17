@@ -20,6 +20,7 @@
     - [ ] master
         - [ ] comment (list with action)
             - [x] list
+                - [x] status action
             - [x] view
     - [ ] home
         - [ ] article -> view (add comment)

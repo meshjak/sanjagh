@@ -96,8 +96,20 @@ $master = Url::toRoute('master/master/index', true);
                                     [
                                         'class' => 'yii\grid\DataColumn',
                                         'label' => Comment::attributeLabels()['status'],
-                                        'value' =>  function($data) {
-                                            return $data->status ? 'فعال' : 'غیرفعال';
+                                        'content' => function($data){
+                                            $statusReverse = !$data->status ? 'فعال' : 'غیرفعال';
+                                            $commentStatus = $data->status ? 'فعال' : 'غیرفعال';
+                                            return Html::a(
+                                                $commentStatus,
+                                                ['master/comment/status', 'id' => $data->id],
+                                                [
+                                                    'title' => 'وضعیت',
+                                                    'data-pjax' => '0',
+                                                    'data-method' => 'post',
+                                                    'aria-label'=> "Status",
+                                                    'data-confirm' => 'وضعیت آیتم مورد نظر به '. $statusReverse .' تغییر دهید؟'
+                                                ]
+                                            );
                                         },
                                     ],
                                     //'created_at',
