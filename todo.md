@@ -2,18 +2,25 @@
 - [ ] migration
     - [x] comment
 - [ ] model
-    - [ ] comment
+    - [x] comment
 - [ ] model form
     - [ ] comment
+- [ ] controller
+    - [ ] master -> comment
+        - [ ] status action
+    - [ ] home -> comment
 - [ ] rbac
     - [ ] comment
         - [ ] deleteComment
         - [ ] listComment
+        - [ ] viewComment
         - [ ] statusComment
         - [ ] answerComment
 - [ ] view
     - [ ] master
         - [ ] comment (list with action)
+            - [x] list
+            - [x] view
     - [ ] home
         - [ ] article -> view (add comment)
         
