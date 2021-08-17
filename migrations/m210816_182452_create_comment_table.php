@@ -16,7 +16,7 @@ class m210816_182452_create_comment_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'article_id' => $this->integer()->notNull(),
-            'parent_id' => $this->integer()->notNull()->defaultValue(0),
+            'parent_id' => $this->integer()->defaultValue(0),
             'body' => $this->string(255),
             'status' => $this->boolean()->defaultValue(0),
             'created_at' => $this->dateTime(),
@@ -55,23 +55,6 @@ class m210816_182452_create_comment_table extends Migration
             'id',
             'CASCADE'
         );
-
-        // creates index for column 'parent_id'
-        $this->createIndex(
-            'idx-comment-parent_id',
-            'comment',
-            'parent_id'
-        );
-
-        // add foreign key for table 'comment'
-        $this->addForeignKey(
-            'fk-comment-parent_id',
-            'comment',
-            'parent_id',
-            'comment',
-            'id',
-            'CASCADE'
-        );
     }
 
     /**
@@ -80,33 +63,23 @@ class m210816_182452_create_comment_table extends Migration
     public function safeDown()
     {
         $this->dropForeignKey(
-            'fk-article-parent_id',
-            'comment'
-        );
-
-        $this->dropIndex(
-            'idx-comment-parent_id',
-            'comment',
-        );
-
-        $this->dropForeignKey(
-            'fk-article-article_id',
+            'fk-comment-article_id',
             'comment'
         );
 
         $this->dropIndex(
             'idx-comment-article_id',
-            'comment',
+            'comment'
         );
 
         $this->dropForeignKey(
-            'fk-article-user_id',
+            'fk-comment-user_id',
             'comment'
         );
 
         $this->dropIndex(
             'idx-comment-user_id',
-            'comment',
+            'comment'
         );
 
 
