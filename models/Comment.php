@@ -61,7 +61,7 @@ class Comment extends ActiveRecord
             [['user_id', 'article_id'], 'required'],
             [['user_id', 'article_id', 'parent_id', 'status'], 'integer'],
             [['created_at'], 'safe'],
-            [['body'], 'string', 'max' => 255],
+            [['body'], 'string', 'max' => 255, 'min' => 3],
             [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Article::className(), 'targetAttribute' => ['article_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
