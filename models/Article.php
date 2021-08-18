@@ -110,4 +110,8 @@ class Article extends ActiveRecord
     {
         return Yii::$app->formatter->asRelativeTime($this->getCreatedAt());
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class, ['article_id' => 'id']);
+    }
 }
