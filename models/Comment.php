@@ -2,6 +2,9 @@
 
 namespace app\models;
 
+use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -23,6 +26,24 @@ use yii\db\ActiveRecord;
  */
 class Comment extends ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'user_id',
+                'updatedByAttribute' => 'user_id',
+            ],
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
+//                    ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
+                ],
+                'value' => function() {return date('Y-m-d H:i:s');}
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -100,5 +121,20 @@ class Comment extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * get article "create at"
+     *
+     * @return string
+     */
+    public function getCreatedAt(): ?string
+    {
+        return $this->created_at;
+    }
+
+    public function relativeCreateTime(): string
+    {
+        return Yii::$app->formatter->asRelativeTime($this->getCreatedAt());
     }
 }
