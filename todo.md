@@ -23,7 +23,7 @@
                 - [x] status action
             - [x] view
     - [ ] home
-        - [ ] article -> view (add comment)
+        - [x] article -> view (add comment)
         
 - [ ] install and config image manager
 

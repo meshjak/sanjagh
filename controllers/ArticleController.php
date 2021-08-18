@@ -4,8 +4,8 @@ namespace app\controllers;
 
 use app\models\Article;
 use app\models\ArticleSearch;
+use app\models\Comment;
 use Yii;
-use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
@@ -67,8 +67,22 @@ class ArticleController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        if (Yii::$app->request->isPost){
+            $data = Yii::$app->request->post()['Comment'];
+            $comment = new Comment();
+            $comment->body = $data['body'];
+            $comment->article_id = $model->id;
+            $comment->user_id = Yii::$app->user->id;
+            $comment->save();
+        }
+
+        $modelComment = new Comment();
+        $comments = $model->comments()->all();
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'comments' => $comments,
+            'modelComment' => $modelComment,
         ]);
     }
 
