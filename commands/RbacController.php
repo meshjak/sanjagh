@@ -51,15 +51,39 @@ class RbacController extends Controller
         $statusArticle->description = 'change status article';
         $auth->add($statusArticle);
 
-        // 3- add "statusArticle" permission
+        // 3- add "viewDetailsArticle" permission
         $viewDetailsArticle = $auth->createPermission('viewDetailsArticle');
-        $viewDetailsArticle->description = 'delete user';
+        $viewDetailsArticle->description = 'delete article';
         $auth->add($viewDetailsArticle);
 
         // 4- add "statusArticle" permission
         $deleteArticle = $auth->createPermission('deleteArticle');
-        $deleteArticle->description = 'delete user';
+        $deleteArticle->description = 'delete article';
         $auth->add($deleteArticle);
+
+        // 1- add "listComment" permission
+        $listComment = $auth->createPermission('listComment');
+        $listComment->description = 'show list of comments';
+        $auth->add($listComment);
+
+        // 2- add "statusComment" permission
+        $statusComment = $auth->createPermission('statusComment');
+        $statusComment->description = 'change status comment';
+        $auth->add($statusComment);
+
+        // 3- add "viewDetailsComment" permission
+        $viewDetailsComment = $auth->createPermission('viewDetailsComment');
+        $viewDetailsComment->description = 'delete comment';
+        $auth->add($viewDetailsComment);
+
+        // 4- add "statusComment" permission
+        $deleteComment = $auth->createPermission('deleteComment');
+        $deleteComment->description = 'delete comment';
+        $auth->add($deleteComment);
+
+
+
+
 
         // Roles
 
@@ -81,14 +105,24 @@ class RbacController extends Controller
         $auth->addChild($managerArticle, $deleteArticle);
         $auth->addChild($managerArticle, $viewDetailsArticle);
 
+        // add managerComment role
+        $managerComment = $auth->createRole('managerComment');
+        $auth->add($managerComment);
+        $auth->addChild($managerComment, $listComment);
+        $auth->addChild($managerComment, $statusComment);
+        $auth->addChild($managerComment, $deleteComment);
+        $auth->addChild($managerComment, $viewDetailsComment);
+
         // add superAdmin
         $superAdmin = $auth->createRole('superAdmin');
         $auth->add($superAdmin);
         $auth->addChild($superAdmin, $managerUser);
         $auth->addChild($superAdmin, $managerArticle);
+        $auth->addChild($superAdmin, $managerComment);
 
         $auth->assign($superAdmin, 1);
         $auth->assign($managerArticle, 2);
         $auth->assign($managerUser, 3);
+        $auth->assign($managerComment, 4);
     }
 }

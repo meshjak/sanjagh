@@ -6,16 +6,11 @@
 - [ ] model form
     - [x] comment
 - [ ] controller
-    - [ ] master -> comment
+    - [x] master -> comment
         - [x] status action
-    - [ ] home -> comment
+    - [x] home -> comment
 - [ ] rbac
-    - [ ] comment
-        - [ ] deleteComment
-        - [ ] listComment
-        - [ ] viewComment
-        - [ ] statusComment
-        - [ ] answerComment
+    - [x] comment
 - [ ] view
     - [ ] master
         - [ ] comment (list with action)
@@ -24,8 +19,6 @@
             - [x] view
     - [ ] home
         - [x] article -> view (add comment)
-        
-- [ ] install and config image manager
 
 # Table: comment
 
