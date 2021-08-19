@@ -1,23 +1,23 @@
 ### version 2
-- [ ] migration
+- [x] migration
     - [x] comment
-- [ ] model
+- [x] model
     - [x] comment
-- [ ] model form
+- [x] model form
     - [x] comment
-- [ ] controller
+- [x] controller
     - [x] master -> comment
         - [x] status action
     - [x] home -> comment
-- [ ] rbac
+- [x] rbac
     - [x] comment
-- [ ] view
-    - [ ] master
-        - [ ] comment (list with action)
+- [x] view
+    - [x] master
+        - [x] comment (list with action)
             - [x] list
                 - [x] status action
             - [x] view
-    - [ ] home
+    - [x] home
         - [x] article -> view (add comment)
 
 # Table: comment
