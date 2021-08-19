@@ -41,7 +41,6 @@ $commentIndexUrl = Url::toRoute('master/comment/index', true);
                 <div class="card">
                     <div class="card-header">
                         <p>
-                            <?= Html::a('بروزرسانی', ['update', 'id' => $model->id], ['class' => 'btn btn-light-primary']) ?>
                             <?= Html::a('حذف', ['delete', 'id' => $model->id], [
                                 'class' => 'btn btn-light-danger',
                                 'data' => [
@@ -49,6 +48,17 @@ $commentIndexUrl = Url::toRoute('master/comment/index', true);
                                     'method' => 'post',
                                 ],
                             ]) ?>
+                            <?php
+                            $statusReverse = !$model->status ? 'فعال' : 'غیرفعال';
+                            $commentStatus = $model->status ? 'فعال' : 'غیرفعال';
+                            echo Html::a($commentStatus, ['delete', 'id' => $model->id], [
+                                'class' => 'btn btn-light-warning',
+                                'data' => [
+                                    'method' => 'post',
+                                    'confirm' => 'وضعیت آیتم مورد نظر به '. $statusReverse .' تغییر دهید؟'
+                                ],
+                            ])
+                            ?>
                         </p>
                     </div>
                     <div class="card-content">

@@ -13,6 +13,10 @@ use yii\helpers\Url;
 $this->title = 'کامنت ها';
 $this->params['breadcrumbs'][] = $this->title;
 
+$action = '';
+$action .= Yii::$app->user->can('viewDetailsComment') ? '{view}' : '';
+$action .= Yii::$app->user->can('deleteComment') ? '{delete}' : '';
+
 $master = Url::toRoute('master/master/index', true);
 ?>
 
@@ -69,14 +73,15 @@ $master = Url::toRoute('master/master/index', true);
                                         'class' => 'yii\grid\DataColumn',
                                         'label' => Comment::attributeLabels()['body'],
                                         'content' => function($data){
-                                            return Html::a(
-                                                StringHelper::truncate(Html::encode($data->body), 40),
+                                            $body = StringHelper::truncate(Html::encode($data->body), 40);
+                                            return (Yii::$app->user->can('viewDetailsComment')) ?  Html::a(
+                                                $body,
                                                 ['master/comment/view', 'id' => $data->id],
                                                 [
                                                     'title' => 'نمایش کاربر',
                                                     'data-pjax' => '0',
                                                 ]
-                                            );
+                                            ): $body;
                                         }
                                     ],
                                     [
@@ -99,7 +104,7 @@ $master = Url::toRoute('master/master/index', true);
                                         'content' => function($data){
                                             $statusReverse = !$data->status ? 'فعال' : 'غیرفعال';
                                             $commentStatus = $data->status ? 'فعال' : 'غیرفعال';
-                                            return Html::a(
+                                            return (Yii::$app->user->can('statusComment')) ? Html::a(
                                                 $commentStatus,
                                                 ['master/comment/status', 'id' => $data->id],
                                                 [
@@ -109,24 +114,15 @@ $master = Url::toRoute('master/master/index', true);
                                                     'aria-label'=> "Status",
                                                     'data-confirm' => 'وضعیت آیتم مورد نظر به '. $statusReverse .' تغییر دهید؟'
                                                 ]
-                                            );
+                                            ) : $commentStatus;
                                         },
                                     ],
                                     //'created_at',
                                     [
                                         'class' => 'yii\grid\ActionColumn',
-                                        'template' => '{view}{update}{delete}',
+                                        'template' => $action,
+                                        'visible' => !empty($action),
                                         'buttons' => [
-                                            'update' => function ($url) {
-                                                return Html::a(
-                                                    '<i class="bx bx-edit-alt mr-1"></i>',
-                                                    $url,
-                                                    [
-                                                        'title' => 'ویرایش',
-                                                        'data-pjax' => '0',
-                                                    ]
-                                                );
-                                            },
                                             'delete' => function ($url) {
                                                 return Html::a(
                                                     '<i class="bx bx-trash mr-1"></i>',
