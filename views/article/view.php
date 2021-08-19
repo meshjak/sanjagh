@@ -65,34 +65,82 @@ YiiAsset::register($this);
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div class="">کامنت ها</div>
-                    <?php
-                    Modal::begin([
-                        'title' => 'نظر خود را وارد کنید',
-                        'toggleButton' => ['label' => 'نوشتن نظر', 'class' => 'btn btn-sm btn-info'],
-                    ]); ?>
-
-                    <?php $form = ActiveForm::begin([
-                            'layout' => 'default',
+                    <?php if (!Yii::$app->user->isGuest): ?>
+                        <?php
+                        Modal::begin([
+                            'title' => 'نظر خود را وارد کنید',
+                            'toggleButton' => ['label' => 'نوشتن نظر', 'class' => 'btn btn-sm btn-info'],
                         ]); ?>
 
+                        <?php $form = ActiveForm::begin([
+                                'layout' => 'default',
+                            ]); ?>
 
-                    <?= $form->field($modelComment, 'body')->textarea(['rows' => 6])
-                            ->error(['class' => 'help-block is-invalid']); ?>
 
-                    <div class="form-group">
-                        <?= Html::submitButton('ارسال', ['class' => 'btn btn-sm btn-info comment-form']) ?>
-                    </div>
+                        <?= $form->field($modelComment, 'body')->textarea(['rows' => 6])
+                                ->error(['class' => 'help-block is-invalid']); ?>
 
-                    <?php ActiveForm::end(); ?>
+                        <div class="form-group">
+                            <?= Html::submitButton('ارسال', ['class' => 'btn btn-sm btn-info comment-form']) ?>
+                        </div>
 
-                    <?php Modal::end(); ?>
+                        <?php ActiveForm::end(); ?>
+
+                        <?php Modal::end(); ?>
+                    <?php endif ?>
                 </div>
                 <div class="card-body">
+                    <?php if(count($comments) < 1): ?>
+                        <div class="alert alert-warning" role="alert">
+                            هنوز نظری ثبت نشده است!
+                        </div>
+                    <?php endif ?>
                     <?php foreach ($comments as $comment): ?>
                         <div class="card mt-3">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <div class=""><?= $comment->user->username ?></div>
-                                <span class="badge badge-secondary" id="modal"><?= Html::encode($comment->relativeCreateTime())  ?></span>
+                                <div class="">
+                                    <span class="badge badge-secondary" id="modal"><?= Html::encode($comment->relativeCreateTime())  ?></span>
+                                    <?php if (Yii::$app->user->can('deleteComment') || Yii::$app->user->can('statusComment')): ?>
+                                    <span type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    </span>
+                                    <div class="dropdown-menu">
+                                        <?php if(Yii::$app->user->can('deleteComment')): ?>
+                                            <?= Html::a(
+                                                'حذف',
+                                                ['master/comment/delete', 'id' => $comment->id],
+                                                [
+                                                    'class' => 'dropdown-item',
+                                                    'title' => 'حذف',
+                                                    'data-pjax' => '0',
+                                                    'data-method' => 'post',
+                                                    'aria-label'=> "Delete",
+                                                    'data-confirm' => 'می خواهید آیتم مورد نظر را حذف کنید؟'
+                                                ]
+                                            );
+                                            ?>
+                                        <?php endif ?>
+                                        <?php if(Yii::$app->user->can('statusComment')): ?>
+                                            <?php
+                                            $statusReverse = !$comment->status ? 'فعال' : 'غیرفعال';
+                                            $commentStatus = $comment->status ? 'فعال' : 'غیرفعال';
+                                            echo Html::a(
+                                                'وضعیت : ' . $commentStatus ,
+                                                ['master/comment/status', 'id' => $comment->id],
+                                                [
+                                                    'class' => 'dropdown-item',
+                                                    'title' => 'وضعیت',
+                                                    'data-pjax' => '0',
+                                                    'data-method' => 'post',
+                                                    'aria-label'=> "Status",
+                                                    'data-confirm' => 'وضعیت آیتم مورد نظر به '. $statusReverse .' تغییر دهید؟'
+                                                ]
+                                            );
+                                            ?>
+                                        <?php endif ?>
+                                    </div>
+                                    <?php endif ?>
+                                </div>
                             </div>
                             <div class="card-body"><?= $comment->body ?></div>
                         </div>
