@@ -5,7 +5,9 @@ namespace app\controllers\master;
 use app\models\Comment;
 use app\models\CommentSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -23,6 +25,36 @@ class CommentController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'denyCallback' => function ($rule, $action) {
+                        throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+                    },
+                    'only' => ['*'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['index'],
+                            'roles' => ['listComment'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['status'],
+                            'roles' => ['statusComment'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['view'],
+                            'roles' => ['viewDetailsComment'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['delete'],
+                            'roles' => ['deleteComment'],
+                        ],
+
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -63,28 +95,6 @@ class CommentController extends Controller
     }
 
     /**
-     * Creates a new Comment model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Comment();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
      * Updates an existing Comment model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id
@@ -100,26 +110,6 @@ class CommentController extends Controller
             $model->save();
         }
         return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
-    }
-
-    /**
-     * Updates an existing Comment model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
