@@ -10,7 +10,7 @@
   
 - [ ] migration
     - [x] tag
-    - [ ] article-tag
+    - [x] article-tag
 - [ ] model -> tag
 - [ ] controller
       - [ ] master -> tag
