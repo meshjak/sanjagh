@@ -1,3 +1,74 @@
+### version 3
+
+- [ ] relation between tag and article
+- [ ] article can have poster
+- [ ] use ckeditor for textarea article
+- [ ] add style to pagination master layout
+- [ ] add slug and poster to article
+- [ ] add avatar and  to user
+
+  
+- [ ] migration
+    - [ ] tag
+    - [ ] article-tag
+- [ ] model -> tag
+- [ ] controller
+      - [ ] master -> tag
+      - [ ] home -> profile
+- [ ] rbac -> tag
+- [ ] view
+    - [ ] tag
+        - [ ] master
+            - [ ] index
+            - [ ] create
+            - [ ] update
+    - [ ] profile
+        - [ ] view
+  
+# Table: tag
+
+- `Name`: tag
+
+## `Columns[]`
+
+| `Label`    | `Name`       | `Type`             | `Nullable` | `Default` | `Comment`            |
+| ---------- | ------------ | ------------------ | ---------- | --------- | -------------------- |
+| id         | id           | int auto_increment | `false`    |           |                      |
+| user_id    | user_id      | int                | `false`    |           |user foreign key      |
+| name       | name         | int                | `false`    |           |                      |
+
+# Table: tag
+- `Name`: article_tag
+
+## `Columns[]`
+
+| `Label`    | `Name`       | `Type`             | `Nullable` | `Default` | `Comment`            |
+| ---------- | ------------ | ------------------ | ---------- | --------- | -------------------- |
+| article_id | article_id   | int                | `false`    |           |article foreign key   |
+| tag_id     | tag_id       | int                | `false`    |           |tag foreign key       |
+
+
+# Table: add_user_table
+
+- `Name`: user
+
+## `Columns[]`
+
+| `Label`    | `Name`       | `Type`             | `Nullable` | `Default` | `Comment`            |
+| ---------- | ------------ | ------------------ | ---------- | --------- | -------------------- |
+| avatar     | avatar       | varchar(255)       | `true`     |           |                      |
+
+# Table: add_article_table
+
+- `Name`: article
+
+## `Columns[]`
+
+| `Label`    | `Name`       | `Type`             | `Nullable` | `Default` | `Comment`            |
+| ---------- | ------------ | ------------------ | ---------- | --------- | -------------------- |
+| slug       | slug         | varchar(255)       | `false`    |           |                      |
+| poster     | poster       | varchar(255)       | `true`     |           |                      |
+
 ### version 2
 - [x] migration
     - [x] comment
