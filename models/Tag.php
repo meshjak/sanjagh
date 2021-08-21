@@ -3,6 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "tag".
@@ -15,8 +18,25 @@ use Yii;
  * @property Article[] $articles
  * @property User $user
  */
-class Tag extends \yii\db\ActiveRecord
+class Tag extends ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'user_id',
+                'updatedByAttribute' => 'user_id',
+            ],
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
+                ],
+                'value' => function() {return date('Y-m-d H:i:s');}
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
