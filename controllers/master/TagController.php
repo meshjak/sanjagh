@@ -13,6 +13,8 @@ use yii\filters\VerbFilter;
  */
 class TagController extends Controller
 {
+    public $layout = '@app/views/master/layouts/base';
+
     /**
      * @inheritDoc
      */
