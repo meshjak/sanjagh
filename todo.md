@@ -11,7 +11,7 @@
 - [ ] migration
     - [x] tag
     - [x] article-tag
-- [ ] model -> tag
+- [x] model -> tag
 - [ ] controller
       - [ ] master -> tag
       - [ ] home -> profile
@@ -19,9 +19,10 @@
 - [ ] view
     - [ ] tag
         - [ ] master
-            - [ ] index
+            - [x] index
             - [ ] create
             - [ ] update
+            - [ ] view
     - [ ] profile
         - [ ] view
   
