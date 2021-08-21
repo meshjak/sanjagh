@@ -22,7 +22,7 @@
             - [x] index
             - [x] create
             - [x] update
-            - [ ] view
+            - [x] view
     - [ ] profile
         - [ ] view
   
