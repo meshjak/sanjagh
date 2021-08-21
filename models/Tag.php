@@ -52,7 +52,7 @@ class Tag extends ActiveRecord
     {
         return [
             [['user_id'], 'integer'],
-            [['name'], 'string', 'max' => 40],
+            [['name'], 'string', 'max' => 40, 'min' => 3],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
