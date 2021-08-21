@@ -20,8 +20,8 @@
     - [ ] tag
         - [ ] master
             - [x] index
-            - [ ] create
-            - [ ] update
+            - [x] create
+            - [x] update
             - [ ] view
     - [ ] profile
         - [ ] view
