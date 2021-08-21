@@ -63,9 +63,10 @@ class Tag extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => 'User ID',
-            'name' => 'Name',
+            'id' => 'شناسه',
+            'user_id' => 'ایجاد کننده',
+            'name' => 'نام',
+            'created_at' => 'زمان ایجاد'
         ];
     }
 
