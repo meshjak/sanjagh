@@ -15,7 +15,8 @@ class m210820_204356_create_tag_table extends Migration
         $this->createTable('{{%tag}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer(),
-            'name' => $this->string(40)
+            'name' => $this->string(40),
+            'created_at' => $this->dateTime(),
         ]);
 
         $this->createIndex(
