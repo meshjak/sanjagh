@@ -20,8 +20,9 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css" integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.0.0/dist/font-face.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100" style="font-family: 'Vazir', sans-serif">
 <?php $this->beginBody() ?>
 
 <!-- BEGIN: header-->

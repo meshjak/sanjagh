@@ -13,24 +13,10 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+        'class' => 'form-horizontal',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'author_id') ?>
-
-    <?= $form->field($model, 'title') ?>
-
-    <?= $form->field($model, 'body') ?>
-
-    <?= $form->field($model, 'status') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
-    </div>
+    <?= $form->field($model, 'searchstring', ['options' => ['class' => 'form-group mb-0']])->textInput(['maxlength' => true, 'placeholder' => 'جستجو ...', 'class'=> 'form-control form-control-sm'])->label(false) ?>
 
     <?php ActiveForm::end(); ?>
 
