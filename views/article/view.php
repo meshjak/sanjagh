@@ -148,5 +148,17 @@ YiiAsset::register($this);
                 </div>
             </div>
         </div>
+        <div class="col-lg-6">
+            <?php if (!empty($tags)): ?>
+            <div class="card">
+                <div class="card-header">تگ ها</div>
+                <div class="card-body">
+                    <?php foreach ($tags as $tag): ?>
+                        <span class="badge badge-info"><?= Html::encode($tag->name)  ?></span>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php endif ?>
+        </div>
     </div>
 </div>
