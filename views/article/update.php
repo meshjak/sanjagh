@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Article */
+/* @var $tags */
 
 $this->title = 'بروزرسانی مقاله: ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'مقالات', 'url' => ['index']];
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'][] = 'بروزرسانی';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'tags' => $tags
     ]) ?>
 
 </div>
