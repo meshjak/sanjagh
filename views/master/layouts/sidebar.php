@@ -43,14 +43,21 @@ use yii\helpers\Url;
                 <li class=" nav-item"><a href="<?= Url::toRoute('master/comment/index', true); ?>"><i class="bx bxs-comment-detail" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Comment">مدیریت نظرات</span></a>
                 </li>
             <?php endif ?>
+
+            <?php if ( Yii::$app->user->can('listTag') || Yii::$app->user->can('createTag')): ?>
             <li class=" nav-item"><a href="#"><i class="bx bxs-purchase-tag" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">تگ ها</span></a>
                 <ul class="menu-content">
+                    <?php if (Yii::$app->user->can('listTag')): ?>
                     <li><a href="<?= Url::toRoute('master/tag/index', true); ?>"><i class="bx bx-left-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">لیست تگ ها</span></a>
                     </li>
+                    <?php endif ?>
+                    <?php if (Yii::$app->user->can('createTag')): ?>
                     <li><a href="<?= Url::toRoute('master/tag/create', true); ?>"><i class="bx bx-left-arrow-alt"></i><span class="menu-item" data-i18n="Invoice">ایجاد تگ جدید</span></a>
                     </li>
+                    <?php endif ?>
                 </ul>
             </li>
+            <?php endif ?>
             <li class=" nav-item"><a href="#"><i class="menu-livicon" data-icon="notebook"></i><span class="menu-title" data-i18n="Invoice">صورتحساب</span></a>
                 <ul class="menu-content">
                     <li><a href=""><i class="bx bx-left-arrow-alt"></i><span class="menu-item" data-i18n="Invoice List">لیست صورتحساب ها</span></a>
