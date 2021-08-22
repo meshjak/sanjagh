@@ -1,6 +1,6 @@
 ### version 3
 
-- [ ] relation between tag and article
+- [x] relation between tag and article
 - [ ] article can have poster
 - [ ] use ckeditor for textarea article
 - [ ] add style to pagination master layout
@@ -12,13 +12,13 @@
     - [x] tag
     - [x] article-tag
 - [x] model -> tag
-- [ ] controller
-      - [ ] master -> tag
+- [x] controller
+      - [x] master -> tag
       - [ ] home -> profile
-- [ ] rbac -> tag
+- [x] rbac -> tag
 - [ ] view
-    - [ ] tag
-        - [ ] master
+    - [x] tag
+        - [x] master
             - [x] index
             - [x] create
             - [x] update

@@ -42,7 +42,10 @@ $tagIndexUrl = Url::toRoute('master/tag/index', true);
                 <div class="card">
                     <div class="card-header">
                         <p>
+                            <?php if (Yii::$app->user->can('updateTag')): ?>
                             <?= Html::a('بروزرسانی', ['update', 'id' => $model->id], ['class' => 'btn btn-light-primary']) ?>
+                            <?php endif ?>
+                            <?php if(Yii::$app->user->can('deleteTag')): ?>
                             <?= Html::a('حذف', ['delete', 'id' => $model->id], [
                                 'class' => 'btn btn-light-danger',
                                 'data' => [
@@ -50,6 +53,7 @@ $tagIndexUrl = Url::toRoute('master/tag/index', true);
                                     'method' => 'post',
                                 ],
                             ]) ?>
+                            <?php endif ?>
                         </p>
                     </div>
                     <div class="card-content">

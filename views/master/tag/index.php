@@ -4,6 +4,7 @@ use app\models\Tag;
 use app\models\User;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\StringHelper;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -12,6 +13,11 @@ use yii\helpers\Url;
 
 $this->title = 'Tags';
 $this->params['breadcrumbs'][] = $this->title;
+
+$action = '';
+$action .= Yii::$app->user->can('viewDetailsTag') ? '{view}' : '';
+$action .= Yii::$app->user->can('deleteTag') ? '{delete}' : '';
+$action .= Yii::$app->user->can('updateTag') ? '{update}' : '';
 
 $masterUrl = Url::toRoute('master/master/index', true);
 ?>
@@ -40,7 +46,9 @@ $masterUrl = Url::toRoute('master/master/index', true);
             <div class="col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-end">
-                        <div><?= Html::a('ایجاد تگ جدید', ['master/tag/create'],['class' => 'btn btn-light-primary mb-1']) ?></div>
+                        <?php if (Yii::$app->user->can('createTag')): ?>
+                            <div><?= Html::a('ایجاد تگ جدید', ['master/tag/create'],['class' => 'btn btn-light-primary mb-1']) ?></div>
+                        <?php endif ?>
                     </div>
                     <div class="card-content">
                         <div class="card-body card-dashboard">
@@ -55,17 +63,24 @@ $masterUrl = Url::toRoute('master/master/index', true);
                                 ],
                                 'columns' => [
                                     ['class' => 'yii\grid\SerialColumn'],
+                                    'name',
                                     [
                                         'class' => 'yii\grid\DataColumn',
                                         'label' => Tag::attributeLabels()['user_id'],
-                                        'value' => function ($data) {
-                                            return User::findOne($data->user_id)->getUsername();
-                                        },
+                                        'content' => function($data){
+                                            return Yii::$app->user->can('viewDetailsUser')? Html::a(
+                                                StringHelper::truncate(Html::encode($data->user->username), 20),
+                                                ['master/user/view', 'id' => $data->user->id],
+                                                [
+                                                    'title' => 'نمایش کاربر',
+                                                    'data-pjax' => '0',
+                                                ]
+                                            ) : $data->user->username;
+                                        }
                                     ],
-                                    'name',
                                     [
                                         'class' => 'yii\grid\ActionColumn',
-                                        'template' => '{view} {update} {delete}',
+                                        'template' => $action,
                                         'buttons' => [
                                             'update' => function ($url) {
                                                 return Html::a(
