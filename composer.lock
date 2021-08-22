@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36aa98802cb479c1ef90c3b77233494a",
+    "content-hash": "9bfd405091bc9fd50c7fbb07c8f02443",
     "packages": [
         {
             "name": "bower-asset/inputmask",
@@ -145,6 +145,53 @@
                 "source": "https://github.com/cebe/markdown"
             },
             "time": "2020-02-26T01:55:18+00:00"
+        },
+        {
+            "name": "ckeditor/ckeditor",
+            "version": "4.7.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ckeditor/ckeditor-releases.git",
+                "reference": "97b8f412f6b36985c734daf0717e81009a885dba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ckeditor/ckeditor-releases/zipball/97b8f412f6b36985c734daf0717e81009a885dba",
+                "reference": "97b8f412f6b36985c734daf0717e81009a885dba",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+",
+                "LGPL-2.1+",
+                "MPL-1.1+"
+            ],
+            "authors": [
+                {
+                    "name": "CKSource",
+                    "homepage": "http://cksource.com"
+                }
+            ],
+            "description": "JavaScript WYSIWYG web text editor.",
+            "homepage": "http://ckeditor.com",
+            "keywords": [
+                "CKEditor",
+                "editor",
+                "fckeditor",
+                "html",
+                "javascript",
+                "richtext",
+                "text",
+                "wysiwyg"
+            ],
+            "support": {
+                "forum": "http://ckeditor.com/forums",
+                "issues": "http://dev.ckeditor.com",
+                "source": "http://github.com/ckeditor/ckeditor-dev",
+                "wiki": "http://docs.ckeditor.com"
+            },
+            "time": "2017-09-13T13:09:47+00:00"
         },
         {
             "name": "cornernote/yii2-linkall",
@@ -396,6 +443,53 @@
                 "source": "https://github.com/ezyang/htmlpurifier/tree/master"
             },
             "time": "2020-06-29T00:56:53+00:00"
+        },
+        {
+            "name": "itstructure/yii2-ckeditor",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itstructure/yii2-ckeditor.git",
+                "reference": "09b25bf66867ba11908ce4330411113aef6c2885"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itstructure/yii2-ckeditor/zipball/09b25bf66867ba11908ce4330411113aef6c2885",
+                "reference": "09b25bf66867ba11908ce4330411113aef6c2885",
+                "shasum": ""
+            },
+            "require": {
+                "ckeditor/ckeditor": "~4.7.1",
+                "php": ">=7.1.0",
+                "yiisoft/yii2": "2.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "Itstructure\\CKEditor\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrey Girnik",
+                    "email": "girnikandrey@gmail.com"
+                }
+            ],
+            "description": "CKEditor widget for Yii2 Framework",
+            "keywords": [
+                "CKEditor",
+                "yii 2",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/itstructure/yii2-ckeditor/issues",
+                "source": "https://github.com/itstructure/yii2-ckeditor/tree/1.1.4"
+            },
+            "time": "2021-02-23T05:53:40+00:00"
         },
         {
             "name": "npm-asset/bootstrap",
