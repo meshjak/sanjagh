@@ -53,6 +53,7 @@ class ArticleController extends Controller
     {
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->sort->defaultOrder = ['created_at' => SORT_DESC];
         $dataProvider->pagination = ['pageSize' => 4];
 
         return $this->render('index', [
