@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
@@ -20,7 +21,10 @@ use yii\helpers\StringHelper;
  * @property int|null $status
  * @property string|null $created_at
  *
+ * @property ArticleTag[] $articleTags
  * @property User $author
+ * @property Comment[] $comments
+ * @property Tag[] $tags
  */
 class Article extends ActiveRecord
 {
@@ -113,5 +117,26 @@ class Article extends ActiveRecord
 
     public function comments(){
         return $this->hasMany(Comment::class, ['article_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[ArticleTags]].
+     *
+     * @return ActiveQuery
+     */
+    public function getArticleTags()
+    {
+        return $this->hasMany(ArticleTag::className(), ['article_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Tags]].
+     *
+     * @return ActiveQuery
+     * @throws InvalidConfigException
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->viaTable('article_tag', ['article_id' => 'id']);
     }
 }
