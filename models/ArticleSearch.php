@@ -4,21 +4,21 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Article;
 
 /**
  * ArticleSearch represents the model behind the search form of `app\models\Article`.
  */
 class ArticleSearch extends Article
 {
+    public $searchstring;
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'author_id', 'status'], 'integer'],
-            [['title', 'body', 'created_at'], 'safe'],
+            [['searchstring'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class ArticleSearch extends Article
      */
     public function search($params)
     {
-        $query = Article::find();
+        $query = Article::find()->joinWith('tags', true, 'LEFT JOIN')->groupBy(['id']);;
 
         // add conditions that should always apply here
 
@@ -58,14 +58,12 @@ class ArticleSearch extends Article
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'author_id' => $this->author_id,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
+            'title' => $this->title,
+            'tags.name' => $this->tags
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'body', $this->body]);
+        $query->orFilterWhere(['like', 'title', $this->searchstring])
+            ->orFilterWhere(['like', 'name', $this->searchstring]);
 
         return $dataProvider;
     }
