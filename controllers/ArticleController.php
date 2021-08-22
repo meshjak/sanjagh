@@ -5,8 +5,10 @@ namespace app\controllers;
 use app\models\Article;
 use app\models\ArticleSearch;
 use app\models\Comment;
+use app\models\Tag;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -79,10 +81,12 @@ class ArticleController extends Controller
 
         $modelComment = new Comment();
         $comments = $model->comments()->all();
+        $tags = $model->tags;
         return $this->render('view', [
             'model' => $model,
             'comments' => $comments,
             'modelComment' => $modelComment,
+            'tags' => $tags
         ]);
     }
 
@@ -94,9 +98,15 @@ class ArticleController extends Controller
     public function actionCreate()
     {
         $model = new Article();
-
+        $tags = Tag::find()->all();
+        $tags = ArrayHelper::map($tags, 'id', 'name',);
         if ($this->request->isPost && !Yii::$app->user->isGuest) {
+//            $tags = $this->request->post('tags');
             if ($model->load($this->request->post()) && $model->save()) {
+//                foreach ($tags as $tag){
+//                    $tag = Tag::findOne($tag);
+//                    $model->link('tags', $tag);
+//                }
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -105,6 +115,7 @@ class ArticleController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'tags' => $tags
         ]);
     }
 
@@ -119,6 +130,8 @@ class ArticleController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $tags = Tag::find()->all();
+        $tags = ArrayHelper::map($tags, 'id', 'name',);
         if(!$this->checkOwnArticle($model))
             throw new ForbiddenHttpException('You are not allowed to update this article.');
 
@@ -128,6 +141,7 @@ class ArticleController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'tags' => $tags
         ]);
     }
 
