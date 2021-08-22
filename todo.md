@@ -2,7 +2,7 @@
 
 - [x] relation between tag and article
 - [ ] article can have poster
-- [ ] use ckeditor for textarea article
+- [x] use ckeditor for textarea article
 - [ ] add style to pagination master layout
 - [ ] add slug and poster to article
 - [ ] add avatar and  to user

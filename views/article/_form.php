@@ -1,5 +1,6 @@
 <?php
 
+use Itstructure\CKEditor\CKEditor;
 use kartik\widgets\Select2;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -18,9 +19,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true])
         ->error(['class' => 'help-block is-invalid']) ?>
 
-    <?= $form->field($model, 'body')->textarea(['rows' => 6])
-        ->error(['class' => 'help-block is-invalid']) ?>
-
     <div class="form-group">
     <?php
     // Without model and implementing a multiple select
@@ -35,6 +33,39 @@ use yii\widgets\ActiveForm;
             'multiple' => true
         ],
     ]);
+    ?>
+        <?php
+    echo $form->field($model, 'body')
+        ->widget(
+            CKEditor::className(),
+            [
+                'preset' => 'custom',
+                'clientOptions' => [
+                    'toolbarGroups' => [
+                        [
+                            'name' => 'undo'
+                        ],
+                        [
+                            'name' => 'basicstyles',
+                            'groups' => ['basicstyles', 'cleanup']
+                        ],
+                        [
+                            'name' => 'colors'
+                        ],
+                        [
+                            'name' => 'links',
+                            'groups' => ['links', 'insert']
+                        ],
+                        [
+                            'name' => 'others',
+                            'groups' => ['others', 'about']
+                        ],
+                    ],
+                    'allowedContent' => true,
+                    'language' => 'fa',
+                ]
+            ]
+        )->error(['class' => 'help-block is-invalid']);
     ?>
     </div>
 

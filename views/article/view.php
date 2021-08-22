@@ -52,7 +52,7 @@ YiiAsset::register($this);
             </div>
         </div>
         <div class="card-body">
-            <?= Html::encode($model->body) ?>
+            <?php echo $model->body ?>
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
             <p class="mb-0">نویسنده: <span><?=  Html::encode($model->author->getFullname())  ?></span></p>
