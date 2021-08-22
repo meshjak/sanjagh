@@ -114,7 +114,9 @@ class Article extends ActiveRecord
 
     public function description(): string
     {
-        return StringHelper::truncateWords(Html::encode($this->body), 60);
+        $string = StringHelper::truncateWords(Html::encode($this->body), 60);
+        $string = html_entity_decode(strip_tags(nl2br($string,'<br>'),ENT_QUOTES));
+        return strip_tags($string);
     }
 
     /**
