@@ -25,6 +25,7 @@ class MasterAsset extends AssetBundle
         'css/components.css',
         'css/themes/dark-layout.css',
         'css/themes/semi-dark-layout.css',
+        'css/custom.css',
 
         // Page CSS
         'css/core/menu/menu-types/vertical-menu.css',

@@ -1,0 +1,35 @@
+/* pagination */
+
+.pagination {
+    display: inline-flex !important;
+    background-color: #f8f9fa!important;
+    padding: 5px 10px;
+    font-size: 18px;
+}
+
+.pagination > li {
+    padding: 1px 12px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.pagination > li:first-child {
+    margin-right: 0;
+
+}.pagination > li:last-child {
+     margin-left: 0;
+ }
+
+.pagination > li a {
+    text-decoration: none;
+}
+
+.pagination .active {
+    background-color: #23adad;
+}
+
+.pagination .active > a {
+    color: white !important;
+}
