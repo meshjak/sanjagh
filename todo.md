@@ -1,20 +1,20 @@
 ### version 3
 
 - [x] relation between tag and article
-- [ ] article can have poster
+- [ ] article can have poster ----> x
 - [x] use ckeditor for textarea article
-- [ ] add style to pagination master layout
-- [ ] add slug and poster to article
-- [ ] add avatar and  to user
+- [x] add style to pagination master layout
+- [ ] add slug and poster to article ----> x
+- [ ] add avatar and  to user ----> x
 
   
-- [ ] migration
+- [x] migration
     - [x] tag
     - [x] article-tag
 - [x] model -> tag
 - [x] controller
       - [x] master -> tag
-      - [ ] home -> profile
+      - [ ] home -> profile ----> x
 - [x] rbac -> tag
 - [ ] view
     - [x] tag
@@ -23,7 +23,7 @@
             - [x] create
             - [x] update
             - [x] view
-    - [ ] profile
+    - [ ] profile ----> x
         - [ ] view
   
 # Table: tag
@@ -51,6 +51,9 @@
 
 # Table: add_user_table
 
+-----------
+## not add in v3!
+
 - `Name`: user
 
 ## `Columns[]`
@@ -69,6 +72,8 @@
 | ---------- | ------------ | ------------------ | ---------- | --------- | -------------------- |
 | slug       | slug         | varchar(255)       | `false`    |           |                      |
 | poster     | poster       | varchar(255)       | `true`     |           |                      |
+
+-----------
 
 ### version 2
 - [x] migration

@@ -7,34 +7,36 @@
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
-$this->title = 'Register';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-register">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="row justify-content-center align-items-center mt-lg-5">
+        <div class="col-lg-5 col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="mb-4">عضویت در سایت</h4>
 
-    <p>Please fill out the following fields to register:</p>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'register-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
+                    <?php $form = ActiveForm::begin([
+                        'id' => 'register-form',
+                        'fieldConfig' => [
+                            'template' => "<div>{label}</div><div>{input}</div><div>{error}</div>",
+                            'labelOptions' => ['class' => 'control-label'],
+                        ],
+                    ]); ?>
 
-    <?= $form->field($model, 'fullname')->textInput(['autofocus' => true]) ?>
-    <?= $form->field($model, 'username')->textInput() ?>
-    <?= $form->field($model, 'email')->textInput() ?>
-    <?= $form->field($model, 'password')->passwordInput() ?>
-    <?= $form->field($model, 'password_repeat')->passwordInput() ?>
+                    <?= $form->field($model, 'fullname')->textInput(['autofocus' => true])->label('نام') ?>
+                    <?= $form->field($model, 'username')->textInput()->label('نام کاربری') ?>
+                    <?= $form->field($model, 'email')->textInput()->label('ایمیل') ?>
+                    <?= $form->field($model, 'password')->passwordInput()->label('رمزعبور') ?>
+                    <?= $form->field($model, 'password_repeat')->passwordInput()->label('تکرار رمزعبور') ?>
 
-    <div class="form-group">
-        <div class="col-lg-offset-1 col-lg-11">
-            <?= Html::submitButton('Register', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
+                    <div class="form-group">
+                        <?= Html::submitButton('ثبت نام', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
+                    </div>
+
+                    <?php ActiveForm::end(); ?>
+                </div>
+            </div>
         </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
 </div>
