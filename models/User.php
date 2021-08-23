@@ -104,7 +104,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return self::findOne(['access_token' => $token]);
+        return self::findOne(['accessToken' => $token]);
     }
 
     /**
