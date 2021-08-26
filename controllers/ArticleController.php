@@ -102,12 +102,7 @@ class ArticleController extends Controller
         $tags = Tag::find()->all();
         $tags = ArrayHelper::map($tags, 'id', 'name',);
         if ($this->request->isPost && !Yii::$app->user->isGuest) {
-//            $tags = $this->request->post('tags');
             if ($model->load($this->request->post()) && $model->save()) {
-//                foreach ($tags as $tag){
-//                    $tag = Tag::findOne($tag);
-//                    $model->link('tags', $tag);
-//                }
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {

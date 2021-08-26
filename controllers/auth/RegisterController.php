@@ -23,7 +23,7 @@ class RegisterController extends Controller
 
         $model = new RegisterForm();
         if ($model->load(Yii::$app->request->post()) && $model->register()) {
-            return $this->redirect(Yii::$app->getHomeUrl());
+            return $this->redirect('/login');
         }
         return $this->render('/auth/register', ['model' => $model]);
     }

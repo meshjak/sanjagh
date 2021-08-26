@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
@@ -207,5 +208,35 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function isCreate() : bool {
         return $this->scenario === self::SCENARIO_CREATE;
+    }
+
+    /**
+     * Gets query for [[Articles]].
+     *
+     * @return ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Article::className(), ['author_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Comments]].
+     *
+     * @return ActiveQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Tags]].
+     *
+     * @return ActiveQuery
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['user_id' => 'id']);
     }
 }
