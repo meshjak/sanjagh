@@ -51,10 +51,20 @@ class ArticleController extends Controller
      */
     public function actionIndex()
     {
+        /**
+         * How many articles we want to display per page.
+         * @var integer
+         */
+        $pageSize = 8;
+
+        /**
+         * Articles have to be published.
+         * @var boolean
+         */
+        $published = true;
+
         $searchModel = new ArticleSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-        $dataProvider->sort->defaultOrder = ['created_at' => SORT_DESC];
-        $dataProvider->pagination = ['pageSize' => 4];
+        $dataProvider = $searchModel->search($this->request->queryParams, $pageSize, $published);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
