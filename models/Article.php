@@ -113,7 +113,7 @@ class Article extends ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'author_id']);
     }
 
-    public function description(): string
+    public function getDescription(): string
     {
         $string = StringHelper::truncateWords(Html::encode($this->body), 60);
         $string = html_entity_decode(strip_tags(nl2br($string,'<br>'),ENT_QUOTES));
