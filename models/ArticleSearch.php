@@ -80,6 +80,7 @@ class ArticleSearch extends Article
         $query->orFilterWhere(['like', 'title', $this->searchstring])
             ->orFilterWhere(['like', 'name', $this->searchstring]);
 
+        $this->searchstring = '';
         return $dataProvider;
     }
 }
