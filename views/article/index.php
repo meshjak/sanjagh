@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Tag;use yii\bootstrap4\LinkPager;
+use app\models\Tag;
 use yii\helpers\Html;
 use yii\widgets\ListView;
 
@@ -41,14 +41,18 @@ use yii\widgets\ListView;
             ]) ?>
         </div>
         <div class="col-lg-4 d-none d-lg-block">
-            <div class="card">
-                <div class="card-header">تگ ها</div>
-                <div class="card-body">
+            <div class="card border-0">
+                <div class="card-body p-1">
+                    <div class="header mb-3 pb-2 border-bottom border-info w-25" style="font-size: 20px">
+                        تگ ها
+                    </div>
+
                     <?php foreach (Tag::find()->all() as $tag): ?>
                         <span class="badge badge-info"><?= Html::encode($tag->name)  ?></span>
                     <?php endforeach ?>
                 </div>
             </div>
+            <div class="divider border-bottom border-info w-75 mx-auto my-3"></div>
         </div>
     </div>
 
