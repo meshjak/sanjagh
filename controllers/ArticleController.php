@@ -112,8 +112,10 @@ class ArticleController extends Controller
         $tags = Tag::find()->all();
         $tags = ArrayHelper::map($tags, 'id', 'name',);
         if ($this->request->isPost && !Yii::$app->user->isGuest) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->status = 0;
+                if($model->save())
+                    return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
