@@ -81,13 +81,14 @@ class ArticleController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        if (Yii::$app->request->isPost){
+        if ($this->request->isPost && !Yii::$app->user->isGuest){
             $data = Yii::$app->request->post()['Comment'];
             $comment = new Comment();
             $comment->body = $data['body'];
             $comment->article_id = $model->id;
             $comment->user_id = Yii::$app->user->id;
             $comment->save();
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         $modelComment = new Comment();
