@@ -92,7 +92,7 @@ class ArticleController extends Controller
         }
 
         $modelComment = new Comment();
-        $comments = $model->comments()->all();
+        $comments = $model->comments()->where(['status' => 1])->orderBy(['created_at' => SORT_DESC])->all();
         $tags = $model->tags;
         return $this->render('view', [
             'model' => $model,
