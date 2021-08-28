@@ -4,7 +4,6 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Comment;
 
 /**
  * CommentSearch represents the model behind the search form of `app\models\Comment`.
@@ -46,6 +45,7 @@ class CommentSearch extends Comment
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['id' => SORT_DESC]],
         ]);
 
         $this->load($params);
