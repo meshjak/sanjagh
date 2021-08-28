@@ -77,11 +77,14 @@ class ArticleController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws ForbiddenHttpException
      */
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        if ($this->request->isPost && !Yii::$app->user->isGuest){
+        if ($model->status == 0 )
+            throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+        if ($this->request->isPost && !Yii::$app->user->isGuest && $model->status == 1){
             $data = Yii::$app->request->post()['Comment'];
             $comment = new Comment();
             $comment->body = $data['body'];
