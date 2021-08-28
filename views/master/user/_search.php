@@ -15,21 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'fullname') ?>
-
-    <?= $form->field($model, 'username') ?>
-
-    <?= $form->field($model, 'email') ?>
-
-    <?= $form->field($model, 'isAdmin') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+    <div class="d-flex">
+        <?= $form->field($model, 'searchstring', ['options' => ['class' => 'form-group mb-0']])->textInput(['maxlength' => true, 'placeholder' => 'جستجو ...', 'class'=> 'form-control form-control-sm'])->label(false) ?>
+        <?= Html::submitButton('جستجو', ['class' => 'btn btn-sm btn-light-primary ml-1']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

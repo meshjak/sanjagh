@@ -52,7 +52,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             [['fullname', 'username', 'email', 'password', 'authKey', 'accessToken'], 'required'],

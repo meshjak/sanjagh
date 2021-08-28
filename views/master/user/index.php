@@ -41,7 +41,8 @@ $columnActionTemplate .= Yii::$app->user->can('viewDetailsArticle') ? '{view}' :
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-end">
+                    <div class="card-header d-flex justify-content-between">
+                        <?php echo $this->render('_search', ['model' => $searchModel]); ?>
                         <div><?= Html::a('ایجاد کاربر جدید', ['master/user/create'],['class' => 'btn btn-light-primary mb-1']) ?></div>
                     </div>
                     <div class="card-content">
@@ -49,6 +50,7 @@ $columnActionTemplate .= Yii::$app->user->can('viewDetailsArticle') ? '{view}' :
 
                             <?= GridView::widget([
                                 'dataProvider' => $dataProvider,
+                                'summary'=> false,
                                 'options' => [
                                     'class' => 'table-responsive',
                                 ],

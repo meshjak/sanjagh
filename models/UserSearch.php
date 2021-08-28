@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -10,6 +11,18 @@ use yii\data\ActiveDataProvider;
  */
 class UserSearch extends User
 {
+    public $searchstring;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['searchstring'], 'safe'],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -26,14 +39,21 @@ class UserSearch extends User
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $pageSize = 15, $published = false)
     {
         $query = User::find();
+
+        if ($published === true)
+            $query->andFilterHaving(['status' => 1]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['id' => SORT_DESC]],
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ]
         ]);
 
         $this->load($params);
@@ -46,19 +66,16 @@ class UserSearch extends User
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'isAdmin' => $this->isAdmin,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
+            'fullname' => $this->searchstring,
+            'username' => $this->searchstring,
+            'email' => $this->searchstring,
         ]);
 
-        $query->andFilterWhere(['like', 'fullname', $this->fullname])
-            ->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'authKey', $this->authKey])
-            ->andFilterWhere(['like', 'accessToken', $this->accessToken]);
+        $query->orFilterWhere(['like', 'fullname', $this->searchstring])
+            ->orFilterWhere(['like', 'username', $this->searchstring])
+            ->orFilterWhere(['like', 'email', $this->searchstring]);
 
+        $this->searchstring = null;
         return $dataProvider;
     }
 }
