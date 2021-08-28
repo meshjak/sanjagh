@@ -3,6 +3,9 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use kartik\icons\Icon;
+Icon::map($this);
+
 use app\assets\AppAsset;
 use app\widgets\Alert;
 use yii\bootstrap4\Breadcrumbs;
