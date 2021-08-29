@@ -7,9 +7,6 @@ use yii\helpers\Html;
 /* @var $tags */
 
 $this->title = 'بروزرسانی مقاله: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'مقالات', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'بروزرسانی';
 ?>
 <div class="article-update">
 

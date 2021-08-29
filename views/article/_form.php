@@ -26,11 +26,12 @@ use yii\widgets\ActiveForm;
     $tagsDefault = ArrayHelper::map($model->tags, 'id', 'id',);
     echo Select2::widget([
         'name' => 'tags',
+        'showToggleAll' => false,
         'data' => $tags,
         'value' => $tagsDefault,
         'options' => [
             'placeholder' => 'تگ های مرتبط را انتخاب کنید ...',
-            'multiple' => true
+            'multiple' => true,
         ],
     ]);
     ?>
@@ -71,7 +72,7 @@ use yii\widgets\ActiveForm;
 
 
     <div class="form-group">
-        <?= Html::submitButton('ذخیره', ['class' => 'btn btn-sm btn-success']) ?>
+        <?= Html::submitButton('ذخیره', ['class' => 'btn btn-sm btn-outline-info']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

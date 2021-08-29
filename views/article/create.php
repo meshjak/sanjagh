@@ -7,8 +7,6 @@ use yii\helpers\Html;
 /* @var $tags  */
 
 $this->title = 'ایجاد مقاله';
-$this->params['breadcrumbs'][] = ['label' => 'مقالات', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-create">
 
