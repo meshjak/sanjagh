@@ -83,7 +83,9 @@ class ArticleController extends Controller
     {
         $model = $this->findModel($id);
         if ($model->status == 0 )
-            throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+            if(!Yii::$app->user->id === $model->author->id)
+                throw new ForbiddenHttpException(Yii::t('yii', 'You are not allowed to perform this action.'));
+
         if ($this->request->isPost && !Yii::$app->user->isGuest && $model->status == 1){
             $data = Yii::$app->request->post()['Comment'];
             $comment = new Comment();
