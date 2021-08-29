@@ -97,7 +97,7 @@ a.desc:after {
     display: inline-flex !important;
     background-color: #f8f9fa!important;
     padding: 5px 10px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .pagination > li {
