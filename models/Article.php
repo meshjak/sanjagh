@@ -9,6 +9,7 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 
@@ -52,7 +53,8 @@ class Article extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
 //                    ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
                 ],
-                'value' => function() {return date('Y-m-d H:i:s');}
+                'value' => new Expression('NOW()'),
+//                'value' => function() {return date('Y-m-d H:i:s');}
             ],
         ];
     }
@@ -132,7 +134,7 @@ class Article extends ActiveRecord
 
     public function relativeCreateTime(): string
     {
-        return Yii::$app->formatter->asRelativeTime($this->getCreatedAt());
+        return Yii::$app->formatter->asDate($this->getCreatedAt());
     }
 
     public function comments(){

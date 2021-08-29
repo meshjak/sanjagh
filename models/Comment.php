@@ -7,6 +7,7 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "comment".
@@ -40,7 +41,8 @@ class Comment extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
 //                    ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
                 ],
-                'value' => function() {return date('Y-m-d H:i:s');}
+                'value' => new Expression('NOW()'),
+//                'value' => function() {return date('Y-m-d H:i:s');}
             ],
         ];
     }
@@ -135,6 +137,6 @@ class Comment extends ActiveRecord
 
     public function relativeCreateTime(): string
     {
-        return Yii::$app->formatter->asRelativeTime($this->getCreatedAt());
+        return Yii::$app->formatter->asDate($this->getCreatedAt());
     }
 }

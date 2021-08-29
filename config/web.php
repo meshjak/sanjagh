@@ -12,6 +12,10 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'locale' => 'fa_IR@calendar=persian',
+        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             // uncomment if you want to cache RBAC items hierarchy
