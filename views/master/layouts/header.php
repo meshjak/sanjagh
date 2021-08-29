@@ -1,3 +1,8 @@
+<?php
+
+use yii\helpers\Html;
+
+?>
 <!-- BEGIN: Header-->
 <div class="header-navbar-shadow"></div>
 <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top ">
@@ -25,9 +30,14 @@
                         </div>
                     </li>
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                            <div class="user-nav d-sm-flex d-none"><span class="user-name">تونی استارک</span><span class="user-status text-muted">آماده</span></div><span><img class="round" src="<?= Yii::getAlias('@web/master_asset').'/images/portrait/small/avatar-s-1.jpg' ?>" alt="avatar" height="40" width="40"></span></a>
-                        <div class="dropdown-menu pb-0"><a class="dropdown-item" href=""><i class="bx bx-user mr-50"></i> ویرایش پروفایل</a><a class="dropdown-item" href=""><i class="bx bx-envelope mr-50"></i> صندوق ورودی من</a><a class="dropdown-item" href=""><i class="bx bx-check-square mr-50"></i> وظیفه</a><a class="dropdown-item" href=""><i class="bx bx-message mr-50"></i> گفتگو ها</a>
-                            <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href=""><i class="bx bx-power-off mr-50"></i> خروج</a>
+                            <div class="user-nav d-sm-flex d-none"><span class="user-name"><?= Yii::$app->user->identity->username ?></span><span class="user-status text-muted">آماده</span></div></a>
+                        <div class="dropdown-menu pb-0"><a class="" href="">
+                                <?= Html::beginForm(['/site/logout'], 'post') .
+                                Html::submitButton(
+                                    'خروج',
+                                    ['class' => 'btn ']
+                                ). Html::endForm()
+                                ?></a>
                         </div>
                     </li>
                 </ul>
