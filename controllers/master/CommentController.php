@@ -107,7 +107,7 @@ class CommentController extends Controller
 
         if ($this->request->isPost) {
             $model->status = $model->status ? 0 : 1;
-            $model->save();
+            $model->updateAttributes(['status']);
         }
         return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
     }
