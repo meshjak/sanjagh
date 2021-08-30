@@ -104,10 +104,9 @@ class ArticleController extends Controller
     public function actionStatus($id)
     {
         $model = $this->findModel($id);
-
         if ($this->request->isPost) {
             $model->status = $model->status ? 0 : 1;
-            $model->save();
+            $model->updateAttributes(['status']);
         }
         return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
     }
