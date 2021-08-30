@@ -6,10 +6,10 @@ use yii\helpers\Html;
 
 <div class="card mb-3">
     <div class="card-body">
-        <div class="header text-secondary" style="font-size: 14px">
-            <span><?=  Html::encode($model->author->getFullname())  ?></span>
-            <span>/</span>
-            <span><?= Html::encode($model->relativeCreateTime())  ?></span>
+        <div class="header text-secondary d-flex" style="font-size: 14px">
+            <div><?=  Html::encode($model->author->getFullname())  ?></div>
+            <div class="mx-1">/</div>
+            <div><?= Html::encode($model->relativeCreateTime())  ?></div>
         </div>
         <div class="title mt-3" style="font-size: 20px"><?= Html::encode($model->title)  ?></div>
         <div class="content mt-3"><?= Html::encode($model->description)  ?></div>

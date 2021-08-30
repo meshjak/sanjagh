@@ -26,6 +26,7 @@ YiiAsset::register($this);
         <div class="col-lg-9 mx-auto">
             <div class="header d-flex justify-content-between align-items-center mb-3">
                 <h1><?= Html::encode($this->title) ?></h1>
+                <?php if($userAccessDeleteArticle || $currentUserIsAuthorArticle): ?>
                 <div>
                     <span class="" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?= Icon::show('cog', ['class' => 'fa-lg text-info', 'framework' => Icon::FAS]);  ?>
@@ -54,7 +55,7 @@ YiiAsset::register($this);
                         </div>
                     </div>
                 </div>
-
+                <?php endif ?>
             </div>
             <div class="row d-flex align-items-center mb-3">
                 <div class="col-lg-6">
